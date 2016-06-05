@@ -72,38 +72,38 @@ void CTable::bucketSort()
     int min = table[0], max = table[0];
    
     // Szukanie minimum oraz maksimum
-    for(int i = 1; i < n; i++)
+    for(int i = 1; i < sizeTable; i++)
     {
         if(min > table[i]) min = table[i];
         if(max < table[i]) max = table[i];
     }
    
     // Wielkosc tablicy pomocniczej
-    int sizeTable = max - min + 1;
+    int sizeTableHelper = max - min + 1;
    
     // Tworzenie tablicy pomocniczej
-    int *tableHelper = new int[sizeTable];
+    int *tableHelper = new int[sizeTableHelper];
    
     // Zerowanie licznikow tablicy
-    for(int i = 0; i < sizeTable; i++)
+    for(int i = 0; i < sizeTableHelper; i++)
         tableHelper[i] = 0;   
 
     // Zliczanie licznikow
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < sizeTable; i++)
         tableHelper[table[i] - min]++;
  
    
     // Wartosci niezerowych licznikow zapisz do table
     // tyle razy ile wystepuja w tabe
-    for(int i = 0, j = 0; i < sizeTable; i++)
+    for(int i = 0, j = 0; i < sizeTableHelper; i++)
         while(tableHelper[i]--)
 			table[j++] = i + min;
    
-    for(int i = 0; i < n; i++)
+    for(int i = 0; i < sizeTable; i++)
         std::cout << table[i] << ", ";
 
-	std::cout << std::endl << "Ilosc porownan elementow: " << n - 1 << std::endl; 
-	std::cout << "Ilosc przestawien elementow: " << n << std::endl; 
+	std::cout << std::endl << "Ilosc porownan elementow: " << sizeTable - 1 << std::endl; 
+	std::cout << "Ilosc przestawien elementow: " << sizeTable << std::endl; 
 
 	// W wolnej chwili niech ktos zobaczy czy to zliczanie porownan jest dobrze
 	// w tym sortowaniu nie nastepuje zadna zamiana miejsc a porownuje sie tylko max i min
