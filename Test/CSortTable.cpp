@@ -97,14 +97,15 @@ void CSortTable::show_menu()
 	cout << "Menu Glowne" << endl;
 	cout << "1. Realizacja algorytmow przy pomocy recznie uzupelnionej tablicy" << endl;
 	cout << "2. Realizacja algorytmow przy pomocy tablicy uzupelnionej liczbami losowymi" << endl;
-	cout << "3. Tworzenie tabeli" << endl;
+	cout << "3. Ilustracja dzialania programow sortujacych " << endl;
 	cout << "0. Opuszczenie programu" << endl;
 }
 void CSortTable::show_menuMethod()
 {
 	cout << endl;
 	cout << "Wybor metody" << endl;
-	cout << "1.Sortowanie babelkowe" << endl;
+	cout << "1. Sortowanie babelkowe " << endl;
+	cout << "8. Sortowanie kubelkowe " << endl;
 }
 void CSortTable::menuMethodChoice()
 {
@@ -114,10 +115,9 @@ void CSortTable::menuMethodChoice()
 	switch (sign)
 	{
 	case'1':
-	
-	 bubbleSort();
-	break;
-	
+		bubbleSort();
+		break;
+		
 	case'2':	
 		selectionSort();
 		break;
@@ -125,36 +125,31 @@ void CSortTable::menuMethodChoice()
 	case'3':
 		quickSortH();
 		break;
+		
 	case'4':
 	
 		shakerSort();
 		break;
 	
 	case'5':
-	
 		insertSort();
 		break;
 	
 	case'6':
-	
 		heapSort();
 		break;
 	
 	case'7':
-	
 		bubbleSortCOM();
 		break;
 	
 	case'8':
-	
 		bucketSort();
 		break;
 
 	case'9':
-	
 		quickSortL();
 		break;
-	
 	
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
