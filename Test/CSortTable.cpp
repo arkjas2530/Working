@@ -7,6 +7,7 @@ using std::cout;
 using std::endl;
 using std::cin;
 
+
 CSortTable::CSortTable()
 {
 	for (;;)
@@ -24,7 +25,9 @@ CSortTable::CSortTable()
 void CSortTable::choice()
 {
 	int n;
+	cout << " * Opcja : ";
 	cin >> sign;
+	cout << endl;
 
 	switch (sign)
 	{
@@ -54,7 +57,6 @@ void CSortTable::choice()
 
 	}
 }
-
 void CSortTable::menuPseudoChoice(int _n)
 {
 	int a, b;
@@ -72,7 +74,7 @@ void CSortTable::menuPseudoChoice(int _n)
 	std::uniform_int_distribution<int> generate(a, b);
 
 	// Przypisanie nowo wygenerowanej liczby pseudolosowej:
-	for (int i = 0; i < _n;i++)
+	for (int i = 0; i < _n; i++)
 	{
 		table[i] = generate(mt);
 		cout << table[i] << " ";
@@ -80,9 +82,9 @@ void CSortTable::menuPseudoChoice(int _n)
 }
 void CSortTable::menuUserChoice(int _n)
 {
-	for (int i = 0; i < _n;i++)
+	for (int i = 0; i < _n; i++)
 	{
-		cout << "Podaj " << i + 1 << " element tablicy : " ;
+		cout << "Podaj " << i + 1 << " element tablicy : ";
 		cin >> table[i];
 	}
 	//nie wiem czy zostawiæ obczajcie to ! ~AREK
@@ -94,63 +96,76 @@ void CSortTable::menu()
 }
 void CSortTable::show_menu()
 {
-	cout << "Menu Glowne" << endl;
+	cout << "--------------MENU GLOWNE--------------" << endl;
 	cout << "1. Realizacja algorytmow przy pomocy recznie uzupelnionej tablicy" << endl;
 	cout << "2. Realizacja algorytmow przy pomocy tablicy uzupelnionej liczbami losowymi" << endl;
-	cout << "3. Ilustracja dzialania programow sortujacych " << endl;
+	cout << "3. Tworzenie tabeli" << endl;
 	cout << "0. Opuszczenie programu" << endl;
 }
 void CSortTable::show_menuMethod()
 {
 	cout << endl;
-	cout << "Wybor metody" << endl;
-	cout << "1. Sortowanie babelkowe " << endl;
-	cout << "8. Sortowanie kubelkowe " << endl;
+	cout << "--------------METODY--------------" << endl;
+	cout << "1.Sortowanie babelkowe" << endl;
+	cout << "2.Sortowanie babelkowe(ciagla kontrola monotonicznosci) " << endl;
+	cout << "3.Sortowanie babelkowe(wariant wahadlowy)" << endl;
+	cout << "4.Sortowanie kubelkowe" << endl;
+	cout << "5.Sortowanie przez wybor" << endl;
+	cout << "6.Sortowanie przez wstawianie" << endl;
+	cout << "7.Sortowanie szybkie(algorytm podzialu Horne'a)" << endl;
+	cout << "8.Sortowanie szybkie(algorytm podzialu Lomuta)" << endl;
+	cout << "9.Sortowanie przez kopcowanie" << endl;
 }
 void CSortTable::menuMethodChoice()
 {
-	cout << "Wybrana opcja : ";
+	cout << " * Opcja : ";
 	cin >> sign;
-
+	cout << endl;
 	switch (sign)
 	{
 	case'1':
+
 		bubbleSort();
 		break;
-		
-	case'2':	
-		selectionSort();
-		break;
-	
-	case'3':
-		quickSortH();
-		break;
-		
-	case'4':
-	
-		shakerSort();
-		break;
-	
-	case'5':
-		insertSort();
-		break;
-	
-	case'6':
-		heapSort();
-		break;
-	
-	case'7':
+
+	case'2':
 		bubbleSortCOM();
 		break;
-	
-	case'8':
+
+	case'3':
+		shakerSort();
+		break;
+	case'4':
+
 		bucketSort();
 		break;
 
-	case'9':
+	case'5':
+
+		selectionSort();
+		break;
+
+	case'6':
+
+		insertSort();
+		break;
+
+	case'7':
+
+		quickSortH();
+		break;
+
+	case'8':
+
 		quickSortL();
 		break;
-	
+
+	case'9':
+
+		heapSort();
+		break;
+
+
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
 
