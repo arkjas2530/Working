@@ -81,7 +81,7 @@ void CTable::bucketSort()
     int sizeTableHelper = max - min + 1;
    
     // Tworzenie tablicy pomocniczej
-    int *tableHelper = new int[sizeTableHelper];
+    int *tableHelper = creatTable(sizeTableHelper);
    
     // Zerowanie licznikow tablicy
     for(int i = 0; i < sizeTableHelper; i++)
