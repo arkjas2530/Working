@@ -4,11 +4,9 @@
 class CSortTable:public CTable
 {
 private:
-	char sign;
-	/*
-	Losuje liczby do tablicy
-	Arg: n - wielkosc tablicy
-	*/
+	char flag;
+/* Losuje liczby do tablicy
+Arg: @n - wielkosc tablicy*/
 	void menuPseudoChoice(int _n);
 	/*
 	Pokazuje menu glowne

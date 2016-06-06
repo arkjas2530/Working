@@ -12,7 +12,7 @@ CSortTable::CSortTable()
 {
 	for (;;)
 	{
-		show_menu();
+		show_menu();	
 		choice();
 		show_menuMethod();
 		menuMethodChoice();
@@ -26,10 +26,10 @@ void CSortTable::choice()
 {
 	int n;
 	cout << " * Opcja : ";
-	cin >> sign;
+	cin >> flag;
 	cout << endl;
 
-	switch (sign)
+	switch (flag)
 	{
 	case '1':
 		cout << "Podaj ilosc elementow do tablicy: ";
@@ -46,15 +46,18 @@ void CSortTable::choice()
 		sizeTable = n;
 		menuPseudoChoice(n);
 		break;
+
 	case '3':
 		menu();
 		// TWORZENIE TABELKI Z DANYMI
 		break;
+
 	case'0':
+		cout << "Koniec dzialania programu. " << endl;
 		exit(0);
+
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
-
 	}
 }
 void CSortTable::menuPseudoChoice(int _n)
@@ -119,9 +122,9 @@ void CSortTable::show_menuMethod()
 void CSortTable::menuMethodChoice()
 {
 	cout << " * Opcja : ";
-	cin >> sign;
+	cin >> flag;
 	cout << endl;
-	switch (sign)
+	switch (flag)
 	{
 	case'1':
 
