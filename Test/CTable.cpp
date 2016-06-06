@@ -102,7 +102,8 @@ void CTable::bucketSort()
         std::cout << table[i] << ", ";
 
 	std::cout << std::endl << "Ilosc porownan elementow: " << sizeTable - 1 << std::endl; 
-	std::cout << "Ilosc przestawien elementow: " << sizeTable << std::endl; 
+	//ZAPYTAC JAK TU TO ROBIC CZY WGL GRZESIUUU
+	//std::cout << "Ilosc przestawien elementow: " << sizeTable << std::endl; 
 
 	// W wolnej chwili niech ktos zobaczy czy to zliczanie porownan jest dobrze
 	// w tym sortowaniu nie nastepuje zadna zamiana miejsc a porownuje sie tylko max i min
