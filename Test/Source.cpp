@@ -1,8 +1,14 @@
+/////////////////////////////////////////////////////////////
+// Program sortujacy
+// Wersja: 1.0
+// Autorzy: Dominik Kulis, Arek Jastrzebski, Weronika Nedza
+/////////////////////////////////////////////////////////////
+
+
 #include "CSortTable.h"
 
 int main()
 {
 	CSortTable tablica;
-
 	return 0;
 }
