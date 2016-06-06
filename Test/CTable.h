@@ -1,3 +1,4 @@
+#include "library.h"
 class CTable
 {
 protected:
