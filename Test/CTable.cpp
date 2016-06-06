@@ -77,7 +77,6 @@ void CTable::bucketSort()
         if(min > table[i]) min = table[i];
         if(max < table[i]) max = table[i];
     }
-   //halo halo
     // Wielkosc tablicy pomocniczej
     int sizeTableHelper = max - min + 1;
    
