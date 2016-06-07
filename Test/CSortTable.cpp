@@ -173,4 +173,62 @@ void CSortTable::menuMethodChoice()
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
 
 	}
+	
+	void CSortTable::showTable()
+{
+	int *wsk = table;
+	for(int i = 0; i < sizeTable; i++)
+		cout << *wsk++ << ", ";
+	cout << endl;
+
+	if(iloscPorownan) cout << "Ilosc porownan: " << iloscPorownan << endl;
+	if(iloscPrzestawien) cout << "Ilosc przestawien: " << iloscPrzestawien << endl;
+}
+
+
+// Zobaczcie czy tak to moze byc!!
+void CSortTable::saveToFile()
+{
+	std::string nameFile;
+	cout << "Podaj nazwe pliku: "; cin >> nameFile;
+	std::ofstream outFile(nameFile + ".txt");
+	if(outFile.fail())
+	{
+		cout << "Cos poszlo nie tak! " << endl;
+		exit(0);
+	}
+	// Zapis tablicy do pliku
+	int *wsk = table;
+	for(int i = 0; i < sizeTable; i++)
+		outFile << *wsk++ << ' ';
+	outFile << endl;
+
+	outFile.close();
+}
+
+void CSortTable::printMenu()
+{
+	cout << "Wybierz opcje: " << endl; 
+	cout << "1. Wyswielt sortowane dane" << endl;
+	cout << "2. Zapisz sorotwane dane do pliku" << endl;
+	cout << "3. Wyswietl i zapisz sortowane dane do pliku" << endl;
+
+	char flag; cin >> flag;
+
+	switch(flag)
+	{
+	case '1':
+		showTable();
+		break;
+	case '2': 
+		saveToFile();
+		break;
+	case '3':
+		showTable();
+		saveToFile();
+		break;
+	default:
+		cout << "Cos poszlo nie tak!" << endl;
+	}
+}
 }
