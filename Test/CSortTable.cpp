@@ -27,6 +27,7 @@ CSortTable::CSortTable()
 
 void CSortTable::choice()
 {
+	char flag;
 	int n;
 	cout << " * Opcja : ";
 	cin >> flag;
