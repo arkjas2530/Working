@@ -29,7 +29,7 @@ void CSortTable::choice()
 {
 	char flag;
 	int n;
-	cout << " * Opcja : "; cin >> flag;
+	cout << " * Opcja: "; cin >> flag;
 	cout << endl;
 
 	system("cls");
