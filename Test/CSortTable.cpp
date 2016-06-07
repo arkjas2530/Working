@@ -16,6 +16,9 @@ CSortTable::CSortTable()
 		choice();
 		show_menuMethod();
 		menuMethodChoice();
+		
+		printTable();
+		
 		cout << "Nacisnij Enter aby kontynuowac..." << endl;
 		system("pause");
 		system("cls");
@@ -173,8 +176,9 @@ void CSortTable::menuMethodChoice()
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
 
 	}
+}
 	
-	void CSortTable::showTable()
+void CSortTable::showTable()
 {
 	int *wsk = table;
 	for(int i = 0; i < sizeTable; i++)
@@ -206,7 +210,7 @@ void CSortTable::saveToFile()
 	outFile.close();
 }
 
-void CSortTable::printMenu()
+void CSortTable::printTable()
 {
 	cout << "Wybierz opcje: " << endl; 
 	cout << "1. Wyswielt sortowane dane" << endl;
