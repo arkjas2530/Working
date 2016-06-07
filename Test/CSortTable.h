@@ -4,7 +4,6 @@
 class CSortTable:public CTable
 {
 private:
-	char flag;
 /* Losuje liczby do tablicy
 Arg: @n - wielkosc tablicy*/
 	void menuPseudoChoice(int _n);
@@ -26,6 +25,14 @@ Arg: @n - wielkosc tablicy*/
 	/*pokazuje menu z wyborem metody sortowania */
 	void menuMethodChoice();
 	/*umozliwia wybor metody sortowania*/
+	
+	// odpowiada za drukowanie danych w pliku i konsoli 
+	void printMenu();
+	// wyswietla zawartosc tablicy
+	void showTable();	
+	// zapisz zawrtosc tablicy do pliku 
+	void saveToFile();	
+	
 	
 public:
 	CSortTable();
