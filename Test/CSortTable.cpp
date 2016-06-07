@@ -102,8 +102,11 @@ void CSortTable::menu()
 void CSortTable::show_menu()
 {
 	cout << "--------------MENU GLOWNE--------------" << endl;
-	cout << "1. Realizacja algorytmow przy pomocy recznie uzupelnionej tablicy" << endl;
-	cout << "2. Realizacja algorytmow przy pomocy tablicy uzupelnionej liczbami losowymi" << endl;
+	//cout << "1. Realizacja algorytmow przy pomocy recznie uzupelnionej tablicy" << endl;
+	//cout << "2. Realizacja algorytmow przy pomocy tablicy uzupelnionej liczbami losowymi" << endl;
+	
+	cout << "1. Reczenie uzupelnij tablice" << endl;
+	cout << "2. Losuj dane do tablicy " << endl;
 	cout << "3. Tworzenie tabeli" << endl;
 	cout << "0. Opuszczenie programu" << endl;
 }
