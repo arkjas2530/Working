@@ -194,7 +194,7 @@ void CSortTable::showTable()
 {
 	system("cls");
 	cout << "----------------------------" << endl;
-	cout << "Posortowana tablica: " << endl;
+	cout << "Dane w tablicy:  " << endl;
 	cout << "----------------------------" << endl;
 
 	int *wsk = table;
