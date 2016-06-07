@@ -125,6 +125,7 @@ void CSortTable::show_menuMethod()
 }
 void CSortTable::menuMethodChoice()
 {
+	char flag;
 	cout << " * Opcja : ";
 	cin >> flag;
 	cout << endl;
@@ -236,4 +237,4 @@ void CSortTable::printTable()
 		cout << "Cos poszlo nie tak!" << endl;
 	}
 }
-}
+
