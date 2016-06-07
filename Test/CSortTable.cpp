@@ -189,6 +189,11 @@ void CSortTable::menuMethodChoice()
 	
 void CSortTable::showTable()
 {
+	system("cls");
+	cout << "----------------------------" << endl;
+	cout << "Posortowana tablica: " << endl;
+	cout << "----------------------------" << endl;
+
 	int *wsk = table;
 	for(int i = 0; i < sizeTable; i++)
 		cout << *wsk++ << ", ";
@@ -196,6 +201,7 @@ void CSortTable::showTable()
 
 	if(iloscPorownan) cout << "Ilosc porownan: " << iloscPorownan << endl;
 	if(iloscPrzestawien) cout << "Ilosc przestawien: " << iloscPrzestawien << endl;
+	cout << endl;
 }
 
 
@@ -221,10 +227,11 @@ void CSortTable::saveToFile()
 
 void CSortTable::printTable()
 {
-	cout << "Wybierz opcje: " << endl; 
-	cout << "1. Wyswielt sortowane dane" << endl;
-	cout << "2. Zapisz sorotwane dane do pliku" << endl;
-	cout << "3. Wyswietl i zapisz sortowane dane do pliku" << endl;
+	system("cls");
+	cout << "Co zrobic z tablica: " << endl; 
+	cout << "1. Wyswietlic dane: " << endl;
+	cout << "2. Zapisac sorotwane dane do pliku " << endl;
+	cout << "3. Wyswietlic i zapisac sortowane dane do pliku" << endl;
 
 	char flag; cin >> flag;
 
