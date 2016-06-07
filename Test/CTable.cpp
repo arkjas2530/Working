@@ -139,7 +139,39 @@ void CTable::shakerSort()
 		cout << table[i] << " ";
 }
 void CTable::insertSort()
-{}
+{
+	using std::cout;
+	int temp;
+	int j = 0;
+	int sum;
+	int comp = 0;
+	int a=0;
+
+	for (int i = 0; i < sizeTable - 1; i++)
+	{
+		temp = table[i + 1];//zmienna porównywana z posortowana tab
+		j = i;
+		sum = 0;
+
+
+		while (j >= 0 && table[j] > temp)
+		{
+			table[j + 1] = table[j];
+			table[j] = temp;
+			j--;
+			a++;
+			sum++;
+		}
+
+		if (j == -1) // w momencie w ktorym nie nastapi przestawienie bo while zostanie spelniony trzeba dodac 1
+			comp += sum;
+		else
+			comp = comp + 1 + sum;
+
+	}
+	cout << a << std::endl;
+	cout << comp << std::endl;
+}
 void CTable::heapSort()
 {}					
 void CTable::bubbleSortCOM()

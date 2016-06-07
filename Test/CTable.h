@@ -21,12 +21,12 @@ public:
 
 	//	Weronika
 	void bubbleSort();		// Sortowanie bąbelkowe
-	void selectionSort();	// Sortowanie przez wybieranie
+	void insertSort();// Sortowanie przez wybieranie
 	void quickSortH();		// Sortowanie szybkie Hoare'a
 
 	//	Arek
 	void shakerSort();		// Sortowanie bąbelkowe wariant wahadlowym
-	void insertSort();		// Sortowanie przez wstawianie
+	void selectionSort();		// Sortowanie przez wstawianie
 	void heapSort();		// Sortowanie przez kopcowanie
 
 	//	Dominik
