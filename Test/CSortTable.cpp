@@ -183,7 +183,11 @@ void CSortTable::menuMethodChoice()
 		heapSort();
 		break;
 
-
+	case '0':
+		system("cls");
+		CSortTable();
+		break;
+		
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
 
