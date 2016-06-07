@@ -4,7 +4,7 @@ class CTable
 protected:
 	int *table; // tablica ktora bedzie sortowana :D
 	int sizeTable; // Rozmiar tablicy 
-
+	void swap_elem(int &a, int &b);
 
 public:
 	CTable();

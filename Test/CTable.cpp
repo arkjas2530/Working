@@ -1,6 +1,16 @@
 #include "CTable.h"
 #include<iostream>
 
+using std::cout;
+
+void CTable::swap_elem(int &a, int &b)
+{
+	int tmp;
+	tmp = a;
+	a = b;
+	b = tmp;
+}
+
 CTable::CTable()
 {
 	table = nullptr;
@@ -19,7 +29,6 @@ int CTable::size()
 void CTable::bubbleSort()
 {
 	
-	using std::cout;
 	int sum;
 	int a=0;
 	int comp=0;//liczba porownan
@@ -59,7 +68,37 @@ void CTable::selectionSort()
 void CTable::quickSortH()
 {}
 void CTable::shakerSort()
-{}
+{
+	int sum = 0, inv = 0, comp = 0;
+	for (int i = 0; i < sizeTable-1;i++)
+	{
+		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
+		{
+			if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
+			{
+				comp++;
+			}
+			if (table[j] > table[j + 1] && i % 2 == 0)
+			{
+				swap_elem(table[j], table[j + 1]);
+				sum++;
+				inv++;
+			}
+			else if (table[k - 1] < table[k - 2] && i % 2 != 0 && k - 2 >= 0)
+			{
+				swap_elem(table[k - 1], table[k - 2]);
+				sum++;
+				inv++;
+			}
+		}
+		if (sum == 0)	break;
+		sum = 0;
+	}
+	cout << "ilosc inversji " << inv << std::endl;
+	cout << "ilosc porownan " << comp << std::endl;
+	for (int i = 0; i < sizeTable; i++)
+		cout << table[i] << " ";
+}
 void CTable::insertSort()
 {}
 void CTable::heapSort()
