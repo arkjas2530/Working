@@ -15,6 +15,8 @@ void CTable::swap_elem(int &a, int &b)
 
 CTable::CTable()
 {
+	iloscPorownan = 0;
+	iloscPrzestawien = 0;
 	table = nullptr;
 }
 
