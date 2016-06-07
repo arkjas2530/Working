@@ -1,4 +1,7 @@
 #include <iostream>
+#include <fstream>
+#include <string>
+
 #include "CTable.h"
 
 class CSortTable:public CTable
