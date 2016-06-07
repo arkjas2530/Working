@@ -2,6 +2,8 @@
 #include<iostream>
 
 using std::cout;
+using std::cin;
+using std::endl;
 
 void CTable::swap_elem(int &a, int &b)
 {
@@ -57,9 +59,9 @@ void CTable::bubbleSort()
 
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
-	cout <<std::endl;
-	cout << a << std::endl;
-	cout << comp << std::endl;
+	cout <<endl;
+	cout << a << endl;
+	cout << comp << endl;
 
 }
 void CTable::selectionSort()
@@ -69,33 +71,68 @@ void CTable::quickSortH()
 {}
 void CTable::shakerSort()
 {
+	cout << "1. Sortowanie Rosnace" << std::endl;
+	cout << "2. Sortowanie Malejace" << std::endl;
+	
+	char flag;
+	cin >> flag;
+
 	int sum = 0, inv = 0, comp = 0;
+	
 	for (int i = 0; i < sizeTable-1;i++)
 	{
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
 		{
-			if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
+			switch (flag)
 			{
-				comp++;
+			case '1':
+				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
+				{
+					comp++;
+				}
+				if (table[j] > table[j + 1] && i % 2 == 0)
+				{
+					swap_elem(table[j], table[j + 1]);
+					sum++;
+					inv++;
+				}
+				else if (table[k - 1] < table[k - 2] && i % 2 != 0 && k - 2 >= 0)
+				{
+					swap_elem(table[k - 1], table[k - 2]);
+					sum++;
+					inv++;
+				}
+				break;
+			case '2':
+				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
+				{
+					comp++;
+				}
+				if (table[j] < table[j + 1] && i % 2 == 0)
+				{
+					swap_elem(table[j], table[j + 1]);
+					sum++;
+					inv++;
+				}
+				else if (table[k - 1] > table[k - 2] && i % 2 != 0 && k - 2 >= 0)
+				{
+					swap_elem(table[k - 1], table[k - 2]);
+					sum++;
+					inv++;
+				}
+				break;
+			default:
+				cout << "BLEDNY WYBOR. Po nacisnieciu ENTER program zakonczy dzialanie" << endl;
+				system("pause");
+				exit(0);
 			}
-			if (table[j] > table[j + 1] && i % 2 == 0)
-			{
-				swap_elem(table[j], table[j + 1]);
-				sum++;
-				inv++;
-			}
-			else if (table[k - 1] < table[k - 2] && i % 2 != 0 && k - 2 >= 0)
-			{
-				swap_elem(table[k - 1], table[k - 2]);
-				sum++;
-				inv++;
-			}
+
 		}
 		if (sum == 0)	break;
 		sum = 0;
 	}
-	cout << "ilosc inversji " << inv << std::endl;
-	cout << "ilosc porownan " << comp << std::endl;
+	cout << "ilosc inversji " << inv << endl;
+	cout << "ilosc porownan " << comp << endl;
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
 }
