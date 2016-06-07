@@ -6,6 +6,8 @@ protected:
 	int sizeTable; // Rozmiar tablicy 
 	void swap_elem(int &a, int &b);
 
+	int iloscPorownan;
+	int iloscPrzestawien;
 public:
 	CTable();
 	~CTable();
