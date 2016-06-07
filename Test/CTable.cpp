@@ -20,7 +20,7 @@ CTable::CTable()
 
 CTable::~CTable()
 {
-	delete[] table;
+	// delete[] table;
 }
 
 int CTable::size()
