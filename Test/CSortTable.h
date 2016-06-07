@@ -27,7 +27,7 @@ Arg: @n - wielkosc tablicy*/
 	/*umozliwia wybor metody sortowania*/
 	
 	// odpowiada za drukowanie danych w pliku i konsoli 
-	void printMenu();
+	void printTable();
 	// wyswietla zawartosc tablicy
 	void showTable();	
 	// zapisz zawrtosc tablicy do pliku 
