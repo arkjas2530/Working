@@ -188,5 +188,24 @@ void CTable::bucketSort()
 	// a ilosc przestawien to po prostu ilosc zapisow do tablicy pomocniczej 
 	
 }
-void CTable::quickSortL()
-{}
+int CTable::partitionLomut(int first, int last)
+{
+	int pivot = table[last];
+	int i = first - 1;
+	for(int j = first; j < last; j++)
+		if(table[j] < pivot)
+			std::swap(table[++i], table[j]);
+
+	std::swap(table[i+1], table[last]);
+
+	return i+1;
+}
+void CTable::quickSortL(int first, int last)
+{
+	if(first < last)
+	{
+		int pivot = partitionLomut(first, last);
+		quickSortL(first, last - 1);
+		quickSortL(first + 1, last);
+	}
+}
