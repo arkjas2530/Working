@@ -29,7 +29,8 @@ public:
 	//	Dominik
 	void bubbleSortCOM();	// Sortowanie bąbelkowe z ciagla kontrla monotonicznosci
 	void bucketSort();		// Sortowanie kubełkowe
-	void quickSortL();		// Sortowanie szybkie Lomuta
+	void quickSortL(int first, int last, int _way = true);	// Sortowanie szybkie Lomuta
+	int partitionLomut(int first, int last, int _way);		
 
 
 };
