@@ -18,7 +18,7 @@ CTable::CTable()
 	iloscPorownan = 0;
 	iloscPrzestawien = 0;
 	table = nullptr;
-	way = true; // TYMCZASOWO BO TRZEBA DOPISAÄ† FUNKCJE
+	way = true; // TYMCZASOWO BO TRZEBA DOPISAÃ„â€  FUNKCJE
 }
 
 CTable::~CTable()
@@ -87,14 +87,14 @@ void CTable::shakerSort()
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
 		{
 			/*
-			Wybór kierunku
+			WybÃ³r kierunku
 			*/
 			switch (flag)
 			{
 			case '1':
 				/*
-				Dla nieparzystych(kierunek w shaker) i elemntów zawieraj¹cych siê  tablicy zwiêkszam porówania
-				Dla parzystych(kierunek w shaker) zwiekszam porówania
+				Dla nieparzystych(kierunek w shaker) i elemntÃ³w zawierajÄ…cych siÄ™  tablicy zwiÄ™kszam porÃ³wania
+				Dla parzystych(kierunek w shaker) zwiekszam porÃ³wania
 				*/
 				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
 				{
@@ -163,7 +163,7 @@ void CTable::insertSort()
 
 	for (int i = 0; i < sizeTable - 1; i++)
 	{
-		temp = table[i + 1];//zmienna porÃ³wnywana z posortowana tab
+		temp = table[i + 1];//zmienna porÄ‚Å‚wnywana z posortowana tab
 		j = i;
 		sum = 0;
 
@@ -222,10 +222,10 @@ void CTable::bucketSort()
         while(tableHelper[i]--)
 			table[j++] = i + min;
    
-    for(int i = 0; i < sizeTable; i++)
-        std::cout << table[i] << ", ";
+    /*for(int i = 0; i < sizeTable; i++)
+        std::cout << table[i] << ", ";*/
 
-	std::cout << std::endl << "Ilosc porownan elementow: " << sizeTable - 1 << std::endl; 
+	//std::cout << std::endl << "Ilosc porownan elementow: " << sizeTable - 1 << std::endl; 
 	//ZAPYTAC JAK TU TO ROBIC CZY WGL GRZESIUUU
 	//std::cout << "Ilosc przestawien elementow: " << sizeTable << std::endl; 
 
