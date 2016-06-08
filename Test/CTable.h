@@ -12,6 +12,7 @@ protected:
 	int sizeTable; 
 	
 	// Kierunek sortowania
+	// true - rosnaco, false - malejaco
 	bool way; 
 	
 	// Przechowuja dane zwiazane z zadaniem!
