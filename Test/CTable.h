@@ -2,8 +2,21 @@
 class CTable
 {
 protected:
-	int *table; // tablica ktora bedzie sortowana :D
-	int sizeTable; // Rozmiar tablicy 
+	///////////////////////////////////////////////////
+	// ZMIENNE
+	///////////////////////////////////////////////////
+	// Tablica glowna klasy
+	int *table; 
+	
+	// Rozmiar tablicy 
+	int sizeTable; 
+	
+	// Kierunek sortowania
+	bool way; 
+	
+	///////////////////////////////////////////////////
+	// METODY
+	///////////////////////////////////////////////////
 	void swap_elem(int &a, int &b);
 
 public:
