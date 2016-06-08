@@ -14,6 +14,10 @@ protected:
 	// Kierunek sortowania
 	bool way; 
 	
+	// Przechowuja dane zwiazane z zadaniem!
+	int iloscPorownan;
+	int iloscPrzestawien;
+	
 	///////////////////////////////////////////////////
 	// METODY
 	///////////////////////////////////////////////////
