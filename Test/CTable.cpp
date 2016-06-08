@@ -69,18 +69,39 @@ void CTable::bubbleSort()
 }
 void CTable::selectionSort()
 {
+	//zmienna wskazujaca na element do zmiany(najmniejszy lub najwi阫szy znaleziony)
+	int element_to_swap;
+	iloscPorownan = 0;	iloscPrzestawien = 0;
+
+	for (int i = 0;i < sizeTable - 2;i++)
+	{
+		//Ustalam pierwszy znaleziony element jako element do zmiany
+		element_to_swap = i;
+		for (int j = i + 1;j < sizeTable;j++)
+		{
+			iloscPorownan++;
+			//Jesli znajduje element mniejszy to wskazuje na niego
+			if (table[element_to_swap] > table[j])
+			{
+				element_to_swap = j;
+			}
+		}
+		//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
+		if (element_to_swap != i)
+		{
+			iloscPrzestawien++;
+			swap_elem(table[i], table[element_to_swap]);
+		}
+	}
+
 }
 void CTable::quickSortH()
 {}
 void CTable::shakerSort()
 {
-	cout << "1. Sortowanie Rosnace" << std::endl;
-	cout << "2. Sortowanie Malejace" << std::endl;
-	
-	char flag;
-	cin >> flag;
 
-	int sum = 0, inv = 0, comp = 0;
+	int sum = 0;
+	iloscPorownan = 0;	iloscPrzestawien = 0;
 	
 	for (int i = 0; i < sizeTable-1;i++)
 	{
@@ -89,17 +110,14 @@ void CTable::shakerSort()
 			/*
 			Wyb贸r kierunku
 			*/
-			switch (flag)
+			switch (way)
 			{
-			case '1':
+			case true:
 				/*
-				Dla nieparzystych(kierunek w shaker) i elemnt贸w zawieraj膮cych si臋  tablicy zwi臋kszam por贸wania
-				Dla parzystych(kierunek w shaker) zwiekszam por贸wania
+				Dla nieparzystych(kierunek w shaker) i elementow nie wykraczajacych poza tablice zwiekszam porownania
+				Dla parzystych(kierunek w shaker) zwiekszam porownania
 				*/
-				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
-				{
-					comp++;
-				}
+				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)	iloscPorownan++;
 				/*
 				Zmiana dla przystych
 				*/
@@ -107,7 +125,7 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				/*
 				Zmiana dla nieparzystych
@@ -116,25 +134,24 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				break;
-			case '2':
-				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
-				{
-					comp++;
-				}
+			case false:
+				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)	iloscPorownan++;
+				
 				if (table[j] < table[j + 1] && i % 2 == 0)
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
+				
 				else if (table[k - 1] > table[k - 2] && i % 2 != 0 && k - 2 >= 0)
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				break;
 			default:
@@ -147,8 +164,8 @@ void CTable::shakerSort()
 		if (sum == 0)	break;
 		sum = 0;
 	}
-	cout << "ilosc inversji " << inv << endl;
-	cout << "ilosc porownan " << comp << endl;
+	cout << "ilosc inversji " << iloscPrzestawien << endl;
+	cout << "ilosc porownan " << iloscPorownan << endl;
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
 }
