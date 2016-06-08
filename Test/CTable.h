@@ -22,7 +22,7 @@ public:
 	void quickSortH();		// Sortowanie szybkie Hoare'a
 
 	//	Arek
-	void shakerSort();		// Sortowanie bąbelkowe wariant wahadlowym
+	void shakerSort();		// Sortowanie bąbelkowe wariant wahadlowym GOTOWE
 	void insertSort();		// Sortowanie przez wstawianie
 	void heapSort();		// Sortowanie przez kopcowanie
 

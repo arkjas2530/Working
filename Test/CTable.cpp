@@ -76,7 +76,7 @@ void CTable::shakerSort()
 	
 	char flag;
 	cin >> flag;
-
+	
 	int sum = 0, inv = 0, comp = 0;
 	
 	for (int i = 0; i < sizeTable-1;i++)
