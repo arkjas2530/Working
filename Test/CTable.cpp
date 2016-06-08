@@ -18,6 +18,7 @@ CTable::CTable()
 	iloscPorownan = 0;
 	iloscPrzestawien = 0;
 	table = nullptr;
+	way = true; // TYMCZASOWO BO TRZEBA DOPISAĆ FUNKCJE
 }
 
 CTable::~CTable()
