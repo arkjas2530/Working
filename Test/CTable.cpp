@@ -85,19 +85,32 @@ void CTable::shakerSort()
 	{
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
 		{
+			/*
+			Wybór kierunku
+			*/
 			switch (flag)
 			{
 			case '1':
+				/*
+				Dla nieparzystych(kierunek w shaker) i elemntów zawieraj¹cych siê  tablicy zwiêkszam porówania
+				Dla parzystych(kierunek w shaker) zwiekszam porówania
+				*/
 				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
 				{
 					comp++;
 				}
+				/*
+				Zmiana dla przystych
+				*/
 				if (table[j] > table[j + 1] && i % 2 == 0)
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
 					inv++;
 				}
+				/*
+				Zmiana dla nieparzystych
+				*/
 				else if (table[k - 1] < table[k - 2] && i % 2 != 0 && k - 2 >= 0)
 				{
 					swap_elem(table[k - 1], table[k - 2]);
