@@ -15,12 +15,14 @@ void CTable::swap_elem(int &a, int &b)
 
 CTable::CTable()
 {
+	iloscPorownan = 0;
+	iloscPrzestawien = 0;
 	table = nullptr;
 }
 
 CTable::~CTable()
 {
-	delete[] table;
+	// delete[] table;
 }
 
 int CTable::size()
@@ -137,7 +139,39 @@ void CTable::shakerSort()
 		cout << table[i] << " ";
 }
 void CTable::insertSort()
-{}
+{
+	using std::cout;
+	int temp;
+	int j = 0;
+	int sum;
+	int comp = 0;
+	int a=0;
+
+	for (int i = 0; i < sizeTable - 1; i++)
+	{
+		temp = table[i + 1];//zmienna porównywana z posortowana tab
+		j = i;
+		sum = 0;
+
+
+		while (j >= 0 && table[j] > temp)
+		{
+			table[j + 1] = table[j];
+			table[j] = temp;
+			j--;
+			a++;
+			sum++;
+		}
+
+		if (j == -1) // w momencie w ktorym nie nastapi przestawienie bo while zostanie spelniony trzeba dodac 1
+			comp += sum;
+		else
+			comp = comp + 1 + sum;
+
+	}
+	cout << a << std::endl;
+	cout << comp << std::endl;
+}
 void CTable::heapSort()
 {}					
 void CTable::bubbleSortCOM()
@@ -186,5 +220,35 @@ void CTable::bucketSort()
 	// a ilosc przestawien to po prostu ilosc zapisow do tablicy pomocniczej 
 	
 }
-void CTable::quickSortL()
-{}
+void CTable::quickSortL(int first, int last)
+{
+	if(first < last)
+	{
+		// Ustawiamy os podzialu na ostatni  element
+		int pivot = partitionLomut(first, last);
+
+		// Wywolanie rekurencyjne funkcji 
+		quickSortL(first, pivot - 1);
+		quickSortL(pivot + 1, last);
+	}
+}
+
+int CTable::partitionLomut(int first, int last)
+{
+	// Ustawiamy os podzialu na ostatni  element
+	int pivot = table[last];
+
+	// Licznik i ustawiam na pierwszy element 
+	int i = first - 1;
+
+	// Przeszukuje od pierwszego do ostatniego elementu, jesli liczba mniejsza zamien!
+	// @i - wskazuje na n element
+	// @j - wskazuje na (n + 1) element
+	for(int j = first; j < last; j++)
+		if(table[j] < pivot)
+			std::swap(table[++i], table[j]);
+
+	std::swap(table[++i], table[last]);
+
+	return i;
+}
