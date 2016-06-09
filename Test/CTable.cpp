@@ -77,8 +77,8 @@ void CTable::quickSortH(int first,int last,int _way)
 		int pivot = partitionHoare(first, last, _way);
 
 		// Wywolanie rekurencyjne funkcji 
-		quickSortL(first, pivot - 1, _way);
-		quickSortL(pivot + 1, last, _way);
+		quickSortH(first, pivot - 1, _way);
+		quickSortH(pivot + 1, last, _way);
 	}
 }
 void CTable::shakerSort()
@@ -196,7 +196,7 @@ void CTable::insertSort()
 }
 void CTable::heapSort()
 {}					
-void CTable::bubbleSortCOM(bool _way)
+void CTable::bubbleSortCOM()
 {
 	;
 }
@@ -230,34 +230,22 @@ void CTable::bucketSort()
     // tyle razy ile wystepuja w tabe
     for(int i = 0, j = 0; i < sizeTableHelper; i++)
         while(tableHelper[i]--)
-			table[j++] = i + min;
-   
-    /*for(int i = 0; i < sizeTable; i++)
-        std::cout << table[i] << ", ";*/
-
-	//std::cout << std::endl << "Ilosc porownan elementow: " << sizeTable - 1 << std::endl; 
-	//ZAPYTAC JAK TU TO ROBIC CZY WGL GRZESIUUU
-	//std::cout << "Ilosc przestawien elementow: " << sizeTable << std::endl; 
-
-	// W wolnej chwili niech ktos zobaczy czy to zliczanie porownan jest dobrze
-	// w tym sortowaniu nie nastepuje zadna zamiana miejsc a porownuje sie tylko max i min
-	// a ilosc przestawien to po prostu ilosc zapisow do tablicy pomocniczej 
-	
+			table[j++] = i + min;	
 }
-void CTable::quickSortL(int first, int last, int _way)
+void CTable::quickSortL(int first, int last)
 {
 	if(first < last)
 	{
 		// Ustawiamy os podzialu na ostatni  element
-		int pivot = partitionLomut(first, last, _way);
+		int pivot = partitionLomut(first, last);
 
 		// Wywolanie rekurencyjne funkcji 
-		quickSortL(first, pivot - 1, _way);
-		quickSortL(pivot + 1, last, _way);
+		quickSortL(first, pivot - 1);
+		quickSortL(pivot + 1, last);
 	}
 }
 
-int CTable::partitionLomut(int first, int last, int _way = true)
+int CTable::partitionLomut(int first, int last)
 {
 	// Ustawiamy os podzialu na ostatni  element
 	int pivot = table[last];
@@ -268,14 +256,14 @@ int CTable::partitionLomut(int first, int last, int _way = true)
 	// Przeszukuje od pierwszego do ostatniego elementu, jesli liczba mniejsza zamien!
 	// @i - wskazuje na n element
 	// @j - wskazuje na (n + 1) element
-	if(_way)
-	{
+	if(way)
+	{	// Sortowanie rosnaco
 		for(int j = first; j < last; j++)
 			if(table[j] < pivot)
 				std::swap(table[++i], table[j]);
 	}
 	else
-	{
+	{	// Sortowanie malejaco
 		for(int j = first; j < last; j++)
 			if(table[j] > pivot)
 				std::swap(table[++i], table[j]);
