@@ -1,5 +1,6 @@
 #pragma once
 #include "Ctable.h"
+
 class Heap:public CTable
 {
 	int val;

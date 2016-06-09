@@ -142,7 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="CSortTable.cpp" />
     <ClCompile Include="CTable.cpp" />
     <ClCompile Include="Heap.cpp" />
