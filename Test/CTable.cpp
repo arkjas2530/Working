@@ -129,12 +129,9 @@ void CTable::shakerSort()
 {
 	cout << "1. Sortowanie Rosnace" << std::endl;
 	cout << "2. Sortowanie Malejace" << std::endl;
-	
-	char flag;
-	cin >> flag;
 
-	int sum = 0, inv = 0, comp = 0;
-	
+	int sum = 0;
+	iloscPorownan = 0; iloscPrzestawien = 0;
 	for (int i = 0; i < sizeTable-1;i++)
 	{
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
@@ -142,16 +139,16 @@ void CTable::shakerSort()
 			/*
 			Wybór kierunku
 			*/
-			switch (flag)
+			switch (way)
 			{
-			case '1':
+			case true:
 				/*
 				Dla nieparzystych(kierunek w shaker) i elemntów zawierających się  tablicy zwiększam porówania
 				Dla parzystych(kierunek w shaker) zwiekszam porówania
 				*/
 				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
 				{
-					comp++;
+					iloscPorownan++;
 				}
 				/*
 				Zmiana dla przystych
@@ -160,7 +157,7 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				/*
 				Zmiana dla nieparzystych
@@ -169,41 +166,33 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				break;
-			case '2':
+			case false:
 				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
 				{
-					comp++;
+					iloscPorownan++;
 				}
 				if (table[j] < table[j + 1] && i % 2 == 0)
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				else if (table[k - 1] > table[k - 2] && i % 2 != 0 && k - 2 >= 0)
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					inv++;
+					iloscPrzestawien++;
 				}
 				break;
-			default:
-				cout << "BLEDNY WYBOR. Po nacisnieciu ENTER program zakonczy dzialanie" << endl;
-				system("pause");
-				exit(0);
 			}
 
 		}
 		if (sum == 0)	break;
 		sum = 0;
 	}
-	cout << "ilosc inversji " << inv << endl;
-	cout << "ilosc porownan " << comp << endl;
-	for (int i = 0; i < sizeTable; i++)
-		cout << table[i] << " ";
 }
 void CTable::insertSort()
 {
