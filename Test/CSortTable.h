@@ -20,11 +20,7 @@ Arg: @n - wielkosc tablicy*/
 	void menuUserChoice(int _n);
 	/*wpisywanie liczb wybranych przez uzytkownika*/
 	void menu();
-	/*
-	Menu glowne
-	*/
-	void choice();
-	void show_menuMethod();
+
 	/*pokazuje menu z wyborem metody sortowania */
 	void menuMethodChoice();
 	/*umozliwia wybor metody sortowania*/

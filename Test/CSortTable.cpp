@@ -13,7 +13,6 @@ CSortTable::CSortTable()
 	for (;;)
 	{
 		show_menu();	
-		choice();
 
 		menuMethodChoice();
 		
@@ -25,8 +24,14 @@ CSortTable::CSortTable()
 	}
 }
 
-void CSortTable::choice()
+void CSortTable::show_menu()
 {
+	cout << "--------------MENU GLOWNE--------------" << endl;
+	cout << "1. Reczenie uzupelnij tablice" << endl;
+	cout << "2. Losuj dane do tablicy " << endl;
+	cout << "3. Tworzenie tabeli" << endl;
+	cout << "0. Opuszczenie programu" << endl;
+
 	char flag;
 	int n;
 	cout << " * Opcja: "; cin >> flag;
@@ -86,6 +91,7 @@ void CSortTable::menuPseudoChoice(int _n)
 		cout << table[i] << " ";
 	}
 }
+
 void CSortTable::menuUserChoice(int _n)
 {
 	for (int i = 0; i < _n; i++)
@@ -93,27 +99,22 @@ void CSortTable::menuUserChoice(int _n)
 		cout << "Podaj " << i + 1 << " element tablicy : ";
 		cin >> table[i];
 	}
-	//nie wiem czy zostawiæ obczajcie to ! ~AREK
-	//system("cls");
 }
+
 void CSortTable::menu()
 {
 
 }
-void CSortTable::show_menu()
+
+void CSortTable::menuMethodChoice()
 {
-	cout << "--------------MENU GLOWNE--------------" << endl;
-	//cout << "1. Realizacja algorytmow przy pomocy recznie uzupelnionej tablicy" << endl;
-	//cout << "2. Realizacja algorytmow przy pomocy tablicy uzupelnionej liczbami losowymi" << endl;
-	
-	cout << "1. Reczenie uzupelnij tablice" << endl;
-	cout << "2. Losuj dane do tablicy " << endl;
-	cout << "3. Tworzenie tabeli" << endl;
-	cout << "0. Opuszczenie programu" << endl;
-}
-void CSortTable::show_menuMethod()
-{
-	cout << endl;
+	system("cls");
+	cout << "----------------------------" << endl;
+	cout << "Wylosowana tablica: " << endl;
+	cout << "----------------------------" << endl;
+
+	showTable();
+
 	cout << "--------------METODY--------------" << endl;
 	cout << "1. Sortowanie babelkowe" << endl;
 	cout << "2. Sortowanie babelkowe(ciagla kontrola monotonicznosci) " << endl;
@@ -125,17 +126,6 @@ void CSortTable::show_menuMethod()
 	cout << "8. Sortowanie szybkie(algorytm podzialu Lomuta)" << endl;
 	cout << "9. Sortowanie przez kopcowanie" << endl;
 	cout << "0. Powrot do mentu glwonego" << endl;
-}
-void CSortTable::menuMethodChoice()
-{
-	system("cls");
-
-	cout << "----------------------------" << endl;
-	cout << "Wylosowana tablica: " << endl;
-	cout << "----------------------------" << endl;
-	showTable();
-	show_menuMethod();
-
 
 	cout << " * Opcja : ";
 	char flag; cin >> flag;
