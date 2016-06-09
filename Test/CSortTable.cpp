@@ -147,7 +147,7 @@ void CSortTable::menuMethodChoice()
 		break;
 
 	case'2':
-		bubbleSortCOM(bool _way);
+		bubbleSortCOM(way);
 		break;
 
 	case'3':
