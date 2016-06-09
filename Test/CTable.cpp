@@ -37,7 +37,7 @@ void CTable::bubbleSort()
 	int sum;
 	int a=0;
 	int comp=0;//liczba porownan
-	int temp;//zmienna przechowujaca wartosc tab
+//zmienna przechowujaca wartosc tab
 
 	for (int i = 0; i <  sizeTable- 1; i++)
 	{
@@ -69,8 +69,18 @@ void CTable::bubbleSort()
 void CTable::selectionSort()
 {
 }
-void CTable::quickSortH()
-{}
+void CTable::quickSortH(int first,int last,int _way)
+{
+	if (first < last)
+	{
+		// Ustawiamy os podzialu na ostatni  element
+		int pivot = partitionHoare(first, last, _way);
+
+		// Wywolanie rekurencyjne funkcji 
+		quickSortL(first, pivot - 1, _way);
+		quickSortL(pivot + 1, last, _way);
+	}
+}
 void CTable::shakerSort()
 {
 	cout << "1. Sortowanie Rosnace" << std::endl;
@@ -273,3 +283,43 @@ int CTable::partitionLomut(int first, int last, int _way = true)
 
 	return i;
 }
+
+int CTable::partitionHoare(int first, int last, int _way)
+{
+	
+		int x;// element rozdzielajacy 
+		int i, j;
+		int p = first;
+		int r = last;
+
+		x = table[p];
+		i = p - 1;
+		j = r + 1;
+
+		while (i<j)
+		{
+			do
+			{
+				j--;
+
+
+			} while (table[j - 1] > x);
+
+			do {
+
+				i++;
+
+			} while (table[i] < x);
+
+			if (i < j)
+			{
+				swap_elem(table[i], table[j - 1]);
+			
+			}
+			else
+				return j;
+		}
+
+
+	}
+
