@@ -67,6 +67,7 @@ void CSortTable::menuPseudoChoice(int _n)
 {
 	int a, b;
 	// Zabezpieczenie generatora, da sie to jakos zrobiæ na TRY CATCH ??? ~AREK
+
 	cout << "Podaj zakres generacji liczb: "; cin >> a >> b;
 	while (a >= b)
 	{
