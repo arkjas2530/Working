@@ -5,10 +5,6 @@ using std::cout;
 using std::cin;
 using std::endl;
 
-// CHUJJ
-
-
-
 void CTable::swap_elem(int &a, int &b)
 {
 	int tmp;
@@ -22,7 +18,7 @@ CTable::CTable()
 	iloscPorownan = 0;
 	iloscPrzestawien = 0;
 	table = nullptr;
-	way = true; // TYMCZASOWO BO TRZEBA DOPISAĂ„â€  FUNKCJE
+	way = true; // TYMCZASOWO BO TRZEBA DOPISAÄ† FUNKCJE
 }
 
 CTable::~CTable()
@@ -41,7 +37,7 @@ void CTable::bubbleSort()
 	int sum;
 	int a=0;
 	int comp=0;//liczba porownan
-	int temp;//zmienna przechowujaca wartosc tab
+//zmienna przechowujaca wartosc tab
 
 	for (int i = 0; i <  sizeTable- 1; i++)
 	{
@@ -51,9 +47,7 @@ void CTable::bubbleSort()
 		{
 			if (table[j] > table[j + 1])
 			{
-				temp = table[j];
-				table[j] = table[j + 1];
-				table[j + 1] = temp;
+				swap_elem(table[j], table[j + 1]);
 				a++;
 				sum++;
 			}
@@ -66,6 +60,7 @@ void CTable::bubbleSort()
 
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
+	
 	cout <<endl;
 	cout << a << endl;
 	cout << comp << endl;
@@ -73,55 +68,47 @@ void CTable::bubbleSort()
 }
 void CTable::selectionSort()
 {
-	//zmienna wskazujaca na element do zmiany(najmniejszy lub największy znaleziony)
-	int element_to_swap;
-	iloscPorownan = 0;	iloscPrzestawien = 0;
-
-	for (int i = 0;i < sizeTable - 2;i++)
-	{
-		//Ustalam pierwszy znaleziony element jako element do zmiany
-		element_to_swap = i;
-		for (int j = i + 1;j < sizeTable;j++)
-		{
-			iloscPorownan++;
-			//Jesli znajduje element mniejszy to wskazuje na niego
-			if (table[element_to_swap] > table[j])
-			{
-				element_to_swap = j;
-			}
-		}
-		//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
-		if (element_to_swap != i)
-		{
-			iloscPrzestawien++;
-			swap_elem(table[i], table[element_to_swap]);
-		}
-	}
-
 }
-void CTable::quickSortH()
-{}
+void CTable::quickSortH(int first,int last,int _way)
+{
+	if (first < last)
+	{
+		// Ustawiamy os podzialu na ostatni  element
+		int pivot = partitionHoare(first, last, _way);
+
+		// Wywolanie rekurencyjne funkcji 
+		quickSortL(first, pivot - 1, _way);
+		quickSortL(pivot + 1, last, _way);
+	}
+}
 void CTable::shakerSort()
 {
+	cout << "1. Sortowanie Rosnace" << std::endl;
+	cout << "2. Sortowanie Malejace" << std::endl;
+	
+	char flag;
+	cin >> flag;
 
-	int sum = 0;
-	iloscPorownan = 0;	iloscPrzestawien = 0;
+	int sum = 0, inv = 0, comp = 0;
 	
 	for (int i = 0; i < sizeTable-1;i++)
 	{
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
 		{
 			/*
-			WybĂłr kierunku
+			Wybór kierunku
 			*/
-			switch (way)
+			switch (flag)
 			{
-			case true:
+			case '1':
 				/*
-				Dla nieparzystych(kierunek w shaker) i elementow nie wykraczajacych poza tablice zwiekszam porownania
-				Dla parzystych(kierunek w shaker) zwiekszam porownania
+				Dla nieparzystych(kierunek w shaker) i elemntów zawierających się  tablicy zwiększam porówania
+				Dla parzystych(kierunek w shaker) zwiekszam porówania
 				*/
-				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)	iloscPorownan++;
+				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
+				{
+					comp++;
+				}
 				/*
 				Zmiana dla przystych
 				*/
@@ -129,7 +116,7 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					iloscPrzestawien++;
+					inv++;
 				}
 				/*
 				Zmiana dla nieparzystych
@@ -138,24 +125,25 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					iloscPrzestawien++;
+					inv++;
 				}
 				break;
-			case false:
-				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)	iloscPorownan++;
-				
+			case '2':
+				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
+				{
+					comp++;
+				}
 				if (table[j] < table[j + 1] && i % 2 == 0)
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					iloscPrzestawien++;
+					inv++;
 				}
-				
 				else if (table[k - 1] > table[k - 2] && i % 2 != 0 && k - 2 >= 0)
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					iloscPrzestawien++;
+					inv++;
 				}
 				break;
 			default:
@@ -168,14 +156,13 @@ void CTable::shakerSort()
 		if (sum == 0)	break;
 		sum = 0;
 	}
-	cout << "ilosc inversji " << iloscPrzestawien << endl;
-	cout << "ilosc porownan " << iloscPorownan << endl;
+	cout << "ilosc inversji " << inv << endl;
+	cout << "ilosc porownan " << comp << endl;
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
 }
 void CTable::insertSort()
 {
-	using std::cout;
 	int temp;
 	int j = 0;
 	int sum;
@@ -184,7 +171,7 @@ void CTable::insertSort()
 
 	for (int i = 0; i < sizeTable - 1; i++)
 	{
-		temp = table[i + 1];//zmienna porÄ‚Ĺ‚wnywana z posortowana tab
+		temp = table[i + 1];//zmienna porownywana z posortowana tab
 		j = i;
 		sum = 0;
 
@@ -208,63 +195,9 @@ void CTable::insertSort()
 	cout << comp << std::endl;
 }
 void CTable::heapSort()
-{}	
-
-void CTable::bubbleSortCOM(bool _way)
-{
-	// Liczniki 
-	// @i - wskazuje do ktorego elementu tablica jest posortowana 
-	// @j - przechodzi przez elementy petli FOR od konca
-	int i = -1, j;
-
-	// Flaga sterujaca petla WHILE
-	bool isMonotonicity; 
-	do
-	{
-		// Ustaw wartosc flagi sterujacej na false
-		isMonotonicity = false;
-
-		// Przechodz i sprawdzaj tablice od konca
-		// Po przejsciu calej tablicy ZAWSZE pierwszy element znajduje na swoim miejscu, 
-		// dlatego nie sprawdzana cala tablica
-		for(j = sizeTable - 1, i++, iloscPorownan++; i < j; j--)
-		{
-	
-			if(_way)
-			{	// Sortuj rosnaco
-				if(table[j] < table[j - 1])
-				{
-					// Zamiana elementow 
-					std::swap(table[j], table[j - 1]);
-
-					// Jesli nastapi przestawienie ustaw flage na true
-					isMonotonicity = true;
-
-					// Zliczanie ilosci zamian elementow
-					iloscPrzestawien++;
-				}
-			}
-			else
-			{	// Sortuj malejaco
-				if(table[j] > table[j - 1])
-				{
-					// Zamiana elementow 
-					std::swap(table[j], table[j - 1]);
-
-					// Jesli nastapi przestawienie ustaw flage na true
-					isMonotonicity = true;
-
-					// Zliczanie ilosci zamian elementow
-					iloscPrzestawien++;
-				}
-			}
-
-		}
-
-	// Jesli nie nastapi przestawienie zakoncz petle
-	} while(isMonotonicity);
-}
-
+{}					
+void CTable::bubbleSortCOM()
+{}
 void CTable::bucketSort()
 {
     // Ustawienie poczatkowych wartosci dla max i min
@@ -350,3 +283,43 @@ int CTable::partitionLomut(int first, int last, int _way = true)
 
 	return i;
 }
+
+int CTable::partitionHoare(int first, int last, int _way)
+{
+	
+		int x;// element rozdzielajacy 
+		int i, j;
+		int p = first;
+		int r = last;
+
+		x = table[p];
+		i = p - 1;
+		j = r + 1;
+
+		while (i<j)
+		{
+			do
+			{
+				j--;
+
+
+			} while (table[j - 1] > x);
+
+			do {
+
+				i++;
+
+			} while (table[i] < x);
+
+			if (i < j)
+			{
+				swap_elem(table[i], table[j - 1]);
+			
+			}
+			else
+				return j;
+		}
+
+
+	}
+

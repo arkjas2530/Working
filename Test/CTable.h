@@ -38,7 +38,7 @@ public:
 	//	Weronika
 	void bubbleSort();		// Sortowanie bąbelkowe
 	void selectionSort();	// Sortowanie przez wybieranie
-	void quickSortH();		// Sortowanie szybkie Hoare'a
+	void quickSortH(int first, int last, int _way = true);		// Sortowanie szybkie Hoare'a
 
 	//	Arek
 	void shakerSort();		// Sortowanie bąbelkowe wariant wahadlowym GOTOWE
@@ -50,6 +50,7 @@ public:
 	void bucketSort();		// Sortowanie kubełkowe
 	void quickSortL(int first, int last, int _way = true);	// Sortowanie szybkie Lomuta
 	int partitionLomut(int first, int last, int _way);		
+	int partitionHoare(int first, int last, int _way);
 
 
 };

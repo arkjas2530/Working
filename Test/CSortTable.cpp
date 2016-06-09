@@ -170,7 +170,7 @@ void CSortTable::menuMethodChoice()
 
 	case'7':
 
-		quickSortH();
+		quickSortH(0,sizeTable-1,way);
 		break;
 
 	case'8':
