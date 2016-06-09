@@ -5,6 +5,9 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+
+
+
 void CTable::swap_elem(int &a, int &b)
 {
 	int tmp;
