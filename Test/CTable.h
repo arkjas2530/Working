@@ -25,7 +25,7 @@ protected:
 	///////////////////////////////////////////////////
 	void swap_elem(int &a, int &b);
 	int *create_root();
-	void build_heap(int elem, int k);
+	void build_heap(int k);
 public:
 	CTable();
 	~CTable();

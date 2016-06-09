@@ -20,17 +20,17 @@ int * CTable::create_root()
 	return heapTable;
 }
 
-void CTable::build_heap(int elem, int k)
+void CTable::build_heap(int k)
 {
 	int j = (k - 1) / 2;
-
-	while (k > 0 && heapTable[j] < elem)
+	int tmp = k;
+	while (k > 0 && heapTable[j] < table[tmp])
 	{
 		heapTable[k] = heapTable[j];
 		k = j;
 		j = (k - 1) / 2;
 	}
-	heapTable[k] = elem;
+	heapTable[k] = tmp;
 }
 
 CTable::CTable()
@@ -88,6 +88,30 @@ void CTable::bubbleSort()
 }
 void CTable::selectionSort()
 {
+	//zmienna wskazujaca na element do zmiany(najmniejszy lub największy znaleziony)
+	int element_to_swap;
+	iloscPorownan = 0;	iloscPrzestawien = 0;
+	for (int i = 0;i < sizeTable - 1;i++)
+	{
+		//Ustalam pierwszy znaleziony element jako element do zmiany
+		element_to_swap = i;
+		for (int j = i + 1;j < sizeTable;j++)
+		{
+			iloscPorownan;
+			//Jesli znajduje element mniejszy to wskazuje na niego
+			if (table[element_to_swap] > table[j])
+			{
+				element_to_swap = j;
+			}
+		}
+		//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
+		if (element_to_swap != i)
+		{
+			iloscPrzestawien;
+			swap_elem(table[i], table[element_to_swap]);
+		}
+	}
+	 
 }
 void CTable::quickSortH(int first,int last,int _way)
 {
@@ -218,7 +242,16 @@ void CTable::insertSort()
 
 void CTable::heapSort()
 {
-
+	create_root();
+	for (int i = 1;i < sizeTable;i++)
+	{
+		build_heap(i);
+	}
+	for (int i = 0;i < sizeTable;i++)
+	{
+		cout << heapTable[i] << " ";
+	}
+	system("pause");
 }					
 void CTable::bubbleSortCOM()
 {
