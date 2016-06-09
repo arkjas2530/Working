@@ -196,8 +196,10 @@ void CTable::insertSort()
 }
 void CTable::heapSort()
 {}					
-void CTable::bubbleSortCOM()
-{}
+void CTable::bubbleSortCOM(bool _way)
+{
+	;
+}
 void CTable::bucketSort()
 {
     // Ustawienie poczatkowych wartosci dla max i min
