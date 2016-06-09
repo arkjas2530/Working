@@ -47,9 +47,7 @@ void CTable::bubbleSort()
 		{
 			if (table[j] > table[j + 1])
 			{
-				temp = table[j];
-				table[j] = table[j + 1];
-				table[j + 1] = temp;
+				swap_elem(table[j], table[j + 1]);
 				a++;
 				sum++;
 			}
@@ -62,6 +60,7 @@ void CTable::bubbleSort()
 
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
+	
 	cout <<endl;
 	cout << a << endl;
 	cout << comp << endl;
@@ -154,7 +153,6 @@ void CTable::shakerSort()
 }
 void CTable::insertSort()
 {
-	using std::cout;
 	int temp;
 	int j = 0;
 	int sum;
@@ -163,7 +161,7 @@ void CTable::insertSort()
 
 	for (int i = 0; i < sizeTable - 1; i++)
 	{
-		temp = table[i + 1];//zmienna porĂłwnywana z posortowana tab
+		temp = table[i + 1];//zmienna porownywana z posortowana tab
 		j = i;
 		sum = 0;
 
