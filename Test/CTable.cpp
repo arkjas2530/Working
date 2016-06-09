@@ -13,6 +13,26 @@ void CTable::swap_elem(int &a, int &b)
 	b = tmp;
 }
 
+int * CTable::create_root()
+{
+	heapTable = new int[sizeTable];
+	heapTable[0] = table[0];
+	return heapTable;
+}
+
+void CTable::build_heap(int elem, int k)
+{
+	int j = (k - 1) / 2;
+
+	while (k > 0 && heapTable[j] < elem)
+	{
+		heapTable[k] = heapTable[j];
+		k = j;
+		j = (k - 1) / 2;
+	}
+	heapTable[k] = elem;
+}
+
 CTable::CTable()
 {
 	iloscPorownan = 0;
@@ -194,8 +214,12 @@ void CTable::insertSort()
 	cout << a << std::endl;
 	cout << comp << std::endl;
 }
+
+
 void CTable::heapSort()
-{}					
+{
+
+}					
 void CTable::bubbleSortCOM()
 {
 	;
@@ -273,7 +297,6 @@ int CTable::partitionLomut(int first, int last)
 
 	return i;
 }
-
 int CTable::partitionHoare(int first, int last, int _way)
 {
 	

@@ -148,7 +148,6 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="CSortTable.h" />
     <ClInclude Include="CTable.h" />
     <ClInclude Include="library.h" />

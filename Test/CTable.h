@@ -8,7 +8,7 @@ protected:
 	///////////////////////////////////////////////////
 	// Tablica glowna klasy
 	int *table; 
-	
+	int *heapTable;
 	// Rozmiar tablicy 
 	int sizeTable; 
 	
@@ -24,7 +24,8 @@ protected:
 	// METODY
 	///////////////////////////////////////////////////
 	void swap_elem(int &a, int &b);
-
+	int *create_root();
+	void build_heap(int elem, int k);
 public:
 	CTable();
 	~CTable();
