@@ -1,4 +1,5 @@
 #include "library.h"
+#include "Heap.h"
 class CTable
 {
 protected:
@@ -45,7 +46,7 @@ public:
 	void heapSort();		// Sortowanie przez kopcowanie
 
 	//	Dominik
-	void bubbleSortCOM();	// Sortowanie bąbelkowe z ciagla kontrla monotonicznosci
+	void bubbleSortCOM(bool _way);	// Sortowanie bąbelkowe z ciagla kontrla monotonicznosci
 	void bucketSort();		// Sortowanie kubełkowe
 	void quickSortL(int first, int last, int _way = true);	// Sortowanie szybkie Lomuta
 	int partitionLomut(int first, int last, int _way);		

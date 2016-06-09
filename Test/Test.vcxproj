@@ -142,14 +142,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="CSortTable.cpp" />
     <ClCompile Include="CTable.cpp" />
+    <ClCompile Include="Heap.cpp" />
     <ClCompile Include="library.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="CSortTable.h" />
     <ClInclude Include="CTable.h" />
+    <ClInclude Include="Heap.h" />
     <ClInclude Include="library.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
