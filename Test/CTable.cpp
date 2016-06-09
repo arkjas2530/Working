@@ -18,7 +18,7 @@ CTable::CTable()
 	iloscPorownan = 0;
 	iloscPrzestawien = 0;
 	table = nullptr;
-	way = true; // TYMCZASOWO BO TRZEBA DOPISAÄ† FUNKCJE
+	way = true; // TYMCZASOWO BO TRZEBA DOPISAĂ„â€  FUNKCJE
 }
 
 CTable::~CTable()
@@ -69,7 +69,7 @@ void CTable::bubbleSort()
 }
 void CTable::selectionSort()
 {
-	//zmienna wskazujaca na element do zmiany(najmniejszy lub najwi�kszy znaleziony)
+	//zmienna wskazujaca na element do zmiany(najmniejszy lub największy znaleziony)
 	int element_to_swap;
 	iloscPorownan = 0;	iloscPrzestawien = 0;
 
@@ -108,7 +108,7 @@ void CTable::shakerSort()
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
 		{
 			/*
-			Wybór kierunku
+			WybĂłr kierunku
 			*/
 			switch (way)
 			{
@@ -180,7 +180,7 @@ void CTable::insertSort()
 
 	for (int i = 0; i < sizeTable - 1; i++)
 	{
-		temp = table[i + 1];//zmienna porĂłwnywana z posortowana tab
+		temp = table[i + 1];//zmienna porÄ‚Ĺ‚wnywana z posortowana tab
 		j = i;
 		sum = 0;
 
@@ -204,17 +204,63 @@ void CTable::insertSort()
 	cout << comp << std::endl;
 }
 void CTable::heapSort()
-{
-	Heap *heap;
-	for (int i = 1;i < sizeTable;i++)
-	{
-		heap->build(table[i], i);
-	}
-	delete heap;
+{}	
 
-}					
-void CTable::bubbleSortCOM()
-{}
+void CTable::bubbleSortCOM(bool _way)
+{
+	// Liczniki 
+	// @i - wskazuje do ktorego elementu tablica jest posortowana 
+	// @j - przechodzi przez elementy petli FOR od konca
+	int i = -1, j;
+
+	// Flaga sterujaca petla WHILE
+	bool isMonotonicity; 
+	do
+	{
+		// Ustaw wartosc flagi sterujacej na false
+		isMonotonicity = false;
+
+		// Przechodz i sprawdzaj tablice od konca
+		// Po przejsciu calej tablicy ZAWSZE pierwszy element znajduje na swoim miejscu, 
+		// dlatego nie sprawdzana cala tablica
+		for(j = sizeTable - 1, i++, iloscPorownan++; i < j; j--)
+		{
+	
+			if(_way)
+			{	// Sortuj rosnaco
+				if(table[j] < table[j - 1])
+				{
+					// Zamiana elementow 
+					std::swap(table[j], table[j - 1]);
+
+					// Jesli nastapi przestawienie ustaw flage na true
+					isMonotonicity = true;
+
+					// Zliczanie ilosci zamian elementow
+					iloscPrzestawien++;
+				}
+			}
+			else
+			{	// Sortuj malejaco
+				if(table[j] > table[j - 1])
+				{
+					// Zamiana elementow 
+					std::swap(table[j], table[j - 1]);
+
+					// Jesli nastapi przestawienie ustaw flage na true
+					isMonotonicity = true;
+
+					// Zliczanie ilosci zamian elementow
+					iloscPrzestawien++;
+				}
+			}
+
+		}
+
+	// Jesli nie nastapi przestawienie zakoncz petle
+	} while(isMonotonicity);
+}
+
 void CTable::bucketSort()
 {
     // Ustawienie poczatkowych wartosci dla max i min
