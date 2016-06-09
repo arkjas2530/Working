@@ -204,7 +204,15 @@ void CTable::insertSort()
 	cout << comp << std::endl;
 }
 void CTable::heapSort()
-{}					
+{
+	Heap *heap;
+	for (int i = 1;i < sizeTable;i++)
+	{
+		heap->build(table[i], i);
+	}
+	delete heap;
+
+}					
 void CTable::bubbleSortCOM()
 {}
 void CTable::bucketSort()
