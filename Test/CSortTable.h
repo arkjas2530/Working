@@ -1,41 +1,45 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <cstdlib>
+#include <random>
+
 #include "CTable.h"
 
 class CSortTable:public CTable
 {
-private:
-/* Losuje liczby do tablicy
-Arg: @n - wielkosc tablicy*/
-
 	// Kierunek sortowania
 	// true - rosnaco, false - malejaco
 	void chooseWay();
-	void menuPseudoChoice(int _n);
-	/*
-	Pokazuje menu glowne
-	*/
+	
+	// Wyswietla i obsluguje menu glowne
 	void show_menu();
-	/*
-	Algorytm do wprowadzania elentów do tablicy z klawiatury
-	*/
+
+	// Pobieranie od usera danych do tablicy
 	void menuUserChoice(int _n);
-	/*wpisywanie liczb wybranych przez uzytkownika*/
+
+	// Losuje dane do tablicy
+	void menuPseudoChoice(int _n);
+
+	// Wyswietla tabelke
 	void menu();
 
-	/*pokazuje menu z wyborem metody sortowania */
+	// Wyswietla i obsluguje metody sortujace
 	void menuMethodChoice();
-	/*umozliwia wybor metody sortowania*/
-	
-	// odpowiada za drukowanie danych w pliku i konsoli 
+
+	// Odpowiada za drukowanie danych w pliku i konsoli 
 	void printTable();
-	// wyswietla zawartosc tablicy
+
+	// Wyswietlanie zawartosci tablicy
 	void showTable();	
-	// zapisz zawrtosc tablicy do pliku 
+
+	// Zapisz zawrtosc tablicy do pliku 
 	void saveToFile();	
 	
-	
 public:
+	///////////////////////////////////////////////////
+	// KONSTRUKTOR
+	///////////////////////////////////////////////////
+	// Odpowiada za wywolanie programu w pliku glownym
 	CSortTable();
 };

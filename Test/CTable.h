@@ -1,3 +1,5 @@
+#include<iostream>
+
 #include "library.h"
 
 class CTable
@@ -26,14 +28,16 @@ protected:
 	void swap_elem(int &a, int &b);
 	void build_heap();
 	void restore_heap(int i);
+
+	// Zwraca rozmiar tablicy
+	size_t size(); 
+
 public:
 	CTable();
 	~CTable();
 	///////////////////////////////////////////////////
 	// METODY
 	///////////////////////////////////////////////////
-	int size(); // sprawdza rozmiar tablicy, to powinno byc typu size_t, ale trzeba bedzie uwazac na warning
-
 	//	Weronika
 	void bubbleSort();		// Sortowanie bąbelkowe
 	void selectionSort();	// Sortowanie przez wybieranie

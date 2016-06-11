@@ -1,5 +1,4 @@
 #include "CTable.h"
-#include<iostream>
 
 using std::cout;
 using std::cin;
@@ -23,10 +22,10 @@ CTable::CTable()
 
 CTable::~CTable()
 {
-	// delete[] table;
+	
 }
 
-int CTable::size()
+size_t CTable::size()
 {
 	return sizeTable;
 }

@@ -1,6 +1,4 @@
 #include "CSortTable.h"
-#include <cstdlib>
-#include <random>
 #include"library.h"
 
 using std::cout;
