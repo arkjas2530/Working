@@ -139,7 +139,7 @@ void CSortTable::menuMethodChoice()
 	cout << "Wylosowana tablica: " << endl;
 	cout << "----------------------------" << endl;
 	int *wsk = table;
-	
+
 	for (int i = 0; i < sizeTable; i++)
 		cout << *wsk++ << ", ";
 	cout << endl;
@@ -160,9 +160,16 @@ void CSortTable::menuMethodChoice()
 	char choice;
 	cin >> choice;
 	cout << endl;
+	/*
+	Decyduje czy metoda należy do tych od 0 - 7
+	Potrzebne do wyswietlania porow. i inv
+	*/
+	if (choice == '7' || choice == '8'|| choice == '9') simple_method = false;
+	else simple_method = true;
 
 	printTable();
 	if(flag == '2' || flag == '3')	openToSave();
+	
 	switch (choice)
 	{
 	case'1':
@@ -427,10 +434,13 @@ void CSortTable::showTable(std::string name, std::string ntable)
 	for (int i = 0; i < sizeTable; i++)
 		cout << *wsk++ << ", ";
 	cout << endl;
+	if (simple_method == true)
+	{
+		cout << "* Ilosc porownan: " << comparision << endl;
+		cout << "* Ilosc przestawien: " << inversion << endl;
+		cout << endl;
+	}
 
-	cout << "* Ilosc porownan: " << comparision << endl;
-	cout << "* Ilosc przestawien: " << inversion << endl;
-	cout << endl;
 }
 
 void CSortTable::showOrSave(std::string name, std::string ntable)

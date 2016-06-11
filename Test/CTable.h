@@ -24,8 +24,10 @@ protected:
 	// Kierunek sortowania
 	// true - rosnaco, false - malejaco
 	bool way; 
-	// zmienna zapamietująca zapis do pliku(żeby nie powtarzać w pętli 4 razy)
-	bool save;
+
+	// sprawdza czy metoda od 0 - 7 czy nie
+	bool simple_method;
+	
 	// Przechowuja dane zwiazane z zadaniem!
 	// Liczba porownan
 	int comparision;	
