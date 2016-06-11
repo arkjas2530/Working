@@ -13,64 +13,30 @@ void CTable::swap_elem(int &a, int &b)
 	b = tmp;
 }
 
-/*
-Buduje forme kopca na bazie Tabeli
-*/
-void CTable::build_heap()
+int * CTable::create_root()
 {
-	heapSize = sizeTable;
-	/*
-	ustawia indeks na węźle,który ma połączenie z ostatnim, 
-	lisciem w drzewie. 
-	*/
-	for (int i = sizeTable / 2;i >= 0;i--)
-	{
-		restore_heap(i);
-	}
+	heapTable = new int[sizeTable];
+	heapTable[0] = table[0];
+	return heapTable;
 }
-/*
-Przywrca wartości kopca, tzn sprzwdza czy synowie i-tego węzła
-nie mają większych wartości od niego
-*/
-void CTable::restore_heap(int i)
+
+void CTable::build_heap(int k)
 {
-	//ustawia indeksy synow
-	int left = 2 * i, right = (2 * i) + 1, largest;
-	
-	/*
-	Poniższe warunki sprawdzają kto jest większy lewy syn, prawy syn, 
-	czy ojciec
-	*/
-	if (left < heapSize && table[left] > table[i])
+	int j = (k - 1) / 2;
+	int tmp = k;
+	while (k > 0 && heapTable[j] < table[tmp])
 	{
-		largest = left;
+		heapTable[k] = heapTable[j];
+		k = j;
+		j = (k - 1) / 2;
 	}
-	else
-	{
-		largest = i;
-	}
-	if (right < heapSize && table[right] > table[largest])
-	{
-		largest = right;
-	}
-	/*
-	W sytuacji jeśli któryś z synów jest większy od ojca, 
-	następuje rekurencyjne wywołanie restore_heap, gdzie sprawdza się dla
-	węzła w którym znaleziono większą wartość, nie zaburzony został kopiec.
-	*/
-	if (largest != i)
-	{
-		//zamienia wiekszego syna z ojcem
-		swap_elem(table[i], table[largest]);
-		restore_heap(largest);
-	}
+	heapTable[k] = tmp;
 }
 
 CTable::CTable()
 {
-	iloscPorownan = 0;
-	iloscPrzestawien = 0;
-	heapSize = sizeTable;
+	comparision = 0;
+	inversion = 0;
 	table = nullptr;
 	way = true; // TYMCZASOWO BO TRZEBA DOPISAÄ† FUNKCJE
 }
@@ -89,9 +55,9 @@ void CTable::bubbleSort()
 {
 	
 	int sum;
-	int a=0;
-	int comp=0;//liczba porownan
-//zmienna przechowujaca wartosc tab
+	inversion = 0;
+	comparision = 0;
+
 
 	for (int i = 0; i <  sizeTable- 1; i++)
 	{
@@ -102,10 +68,10 @@ void CTable::bubbleSort()
 			if (table[j] > table[j + 1])
 			{
 				swap_elem(table[j], table[j + 1]);
-				a++;
+				inversion++;
 				sum++;
 			}
-			comp++;
+			comparision++;
 		}
 
 		if (sum == 0)
@@ -115,23 +81,21 @@ void CTable::bubbleSort()
 	for (int i = 0; i < sizeTable; i++)
 		cout << table[i] << " ";
 	
-	cout <<endl;
-	cout << a << endl;
-	cout << comp << endl;
+
 
 }
 void CTable::selectionSort()
 {
 	//zmienna wskazujaca na element do zmiany(najmniejszy lub największy znaleziony)
 	int element_to_swap;
-	iloscPorownan = 0;	iloscPrzestawien = 0;
+	comparision = 0;	inversion = 0;
 	for (int i = 0;i < sizeTable - 1;i++)
 	{
 		//Ustalam pierwszy znaleziony element jako element do zmiany
 		element_to_swap = i;
 		for (int j = i + 1;j < sizeTable;j++)
 		{
-			iloscPorownan;
+			comparision;
 			//Jesli znajduje element mniejszy to wskazuje na niego
 			if (table[element_to_swap] > table[j])
 			{
@@ -141,22 +105,22 @@ void CTable::selectionSort()
 		//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
 		if (element_to_swap != i)
 		{
-			iloscPrzestawien;
+			inversion;
 			swap_elem(table[i], table[element_to_swap]);
 		}
 	}
 	 
 }
-void CTable::quickSortH(int first,int last,int _way)
+void CTable::quickSortH(int first,int last)
 {
 	if (first < last)
 	{
 		// Ustawiamy os podzialu na ostatni  element
-		int pivot = partitionHoare(first, last, _way);
+		int pivot = partitionHoare(first, last);
 
 		// Wywolanie rekurencyjne funkcji 
-		quickSortH(first, pivot - 1, _way);
-		quickSortH(pivot + 1, last, _way);
+		quickSortH(first, pivot - 1);
+		quickSortH(pivot + 1, last);
 	}
 }
 void CTable::shakerSort()
@@ -165,7 +129,7 @@ void CTable::shakerSort()
 	cout << "2. Sortowanie Malejace" << std::endl;
 
 	int sum = 0;
-	iloscPorownan = 0; iloscPrzestawien = 0;
+	comparision = 0; inversion = 0;
 	for (int i = 0; i < sizeTable-1;i++)
 	{
 		for (int j = 0, k = sizeTable - 1;j < sizeTable-1;j++,k--)
@@ -182,7 +146,7 @@ void CTable::shakerSort()
 				*/
 				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
 				{
-					iloscPorownan++;
+					comparision++;
 				}
 				/*
 				Zmiana dla przystych
@@ -191,7 +155,7 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					iloscPrzestawien++;
+					inversion++;
 				}
 				/*
 				Zmiana dla nieparzystych
@@ -200,25 +164,25 @@ void CTable::shakerSort()
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					iloscPrzestawien++;
+					inversion++;
 				}
 				break;
 			case false:
 				if ((k - 2 >= 0 && i % 2 != 0) || i % 2 == 0)
 				{
-					iloscPorownan++;
+					comparision++;
 				}
 				if (table[j] < table[j + 1] && i % 2 == 0)
 				{
 					swap_elem(table[j], table[j + 1]);
 					sum++;
-					iloscPrzestawien++;
+					inversion++;
 				}
 				else if (table[k - 1] > table[k - 2] && i % 2 != 0 && k - 2 >= 0)
 				{
 					swap_elem(table[k - 1], table[k - 2]);
 					sum++;
-					iloscPrzestawien++;
+					inversion++;
 				}
 				break;
 			}
@@ -233,8 +197,8 @@ void CTable::insertSort()
 	int temp;
 	int j = 0;
 	int sum;
-	int comp = 0;
-	int a=0;
+	comparision = 0;
+	inversion = 0;
 
 	for (int i = 0; i < sizeTable - 1; i++)
 	{
@@ -248,35 +212,32 @@ void CTable::insertSort()
 			table[j + 1] = table[j];
 			table[j] = temp;
 			j--;
-			a++;
+			inversion++;
 			sum++;
 		}
 
 		if (j == -1) // w momencie w ktorym nie nastapi przestawienie bo while zostanie spelniony trzeba dodac 1
-			comp += sum;
+			comparision += sum;
 		else
-			comp = comp + 1 + sum;
+			comparision+= 1 + sum;
 
 	}
-	cout << a << std::endl;
-	cout << comp << std::endl;
+
 }
 
 
 void CTable::heapSort()
 {
-	build_heap();
-	/*
-	Zamienia korzeń z najmłodszym lisciem, wyrzuca zamieniony element, poza
-	kopiec i przywraca wartość kopca w korzeniu, tak dopóki w kopcu
-	nie zostanie 1 element
-	*/
-	for (int i = sizeTable - 1;i >= 1;i--)
+	create_root();
+	for (int i = 1;i < sizeTable;i++)
 	{
-		swap_elem(table[0], table[i]);
-		heapSize--;
-		restore_heap(0);
+		build_heap(i);
 	}
+	for (int i = 0;i < sizeTable;i++)
+	{
+		cout << heapTable[i] << " ";
+	}
+	system("pause");
 }					
 void CTable::bubbleSortCOM()
 {
@@ -355,16 +316,16 @@ int CTable::partitionLomut(int first, int last)
 
 	return i;
 }
-int CTable::partitionHoare(int first, int last, int _way)
+int CTable::partitionHoare(int first, int last)
 {
 	
-		int x;// element rozdzielajacy 
+		int x;
 		int i, j;
 		int p = first;
 		int r = last;
 
-		x = table[p];
-		i = p - 1;
+		x = table[p]; //element rozdzielajacy na poczatku tablicy
+		i = p - 1;  
 		j = r + 1;
 
 		while (i<j)
@@ -372,7 +333,6 @@ int CTable::partitionHoare(int first, int last, int _way)
 			do
 			{
 				j--;
-
 
 			} while (table[j - 1] > x);
 

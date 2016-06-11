@@ -161,7 +161,7 @@ void CSortTable::menuMethodChoice()
 
 	case'7':
 
-		quickSortH(0,sizeTable-1,way);
+		quickSortH(0,sizeTable-1);
 		break;
 
 	case'8':
@@ -197,8 +197,8 @@ void CSortTable::showTable()
 		cout << *wsk++ << ", ";
 	cout << endl;
 
-	if(iloscPorownan) cout << "Ilosc porownan: " << iloscPorownan << endl;
-	if(iloscPrzestawien) cout << "Ilosc przestawien: " << iloscPrzestawien << endl;
+	if(comparision) cout << "Ilosc porownan: " << comparision << endl;
+	if(inversion) cout << "Ilosc przestawien: " << inversion << endl;
 	cout << endl;
 }
 
