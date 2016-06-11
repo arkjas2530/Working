@@ -11,7 +11,7 @@ protected:
 	int *heapTable;
 	// Rozmiar tablicy 
 	int sizeTable; 
-	
+	int heapSize;
 	// Kierunek sortowania
 	// true - rosnaco, false - malejaco
 	bool way; 
@@ -25,7 +25,8 @@ protected:
 	///////////////////////////////////////////////////
 	void swap_elem(int &a, int &b);
 	int *create_root();
-	void build_heap(int k);
+	void build_heap();
+	void restore_heap(int i);
 public:
 	CTable();
 	~CTable();

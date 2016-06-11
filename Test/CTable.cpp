@@ -13,30 +13,64 @@ void CTable::swap_elem(int &a, int &b)
 	b = tmp;
 }
 
-int * CTable::create_root()
+/*
+Buduje forme kopca na bazie Tabeli
+*/
+void CTable::build_heap()
 {
-	heapTable = new int[sizeTable];
-	heapTable[0] = table[0];
-	return heapTable;
-}
-
-void CTable::build_heap(int k)
-{
-	int j = (k - 1) / 2;
-	int tmp = k;
-	while (k > 0 && heapTable[j] < table[tmp])
+	heapSize = sizeTable;
+	/*
+	ustawia indeks na węźle,który ma połączenie z ostatnim, 
+	lisciem w drzewie. 
+	*/
+	for (int i = sizeTable / 2;i >= 0;i--)
 	{
-		heapTable[k] = heapTable[j];
-		k = j;
-		j = (k - 1) / 2;
+		restore_heap(i);
 	}
-	heapTable[k] = tmp;
+}
+/*
+Przywrca wartości kopca, tzn sprzwdza czy synowie i-tego węzła
+nie mają większych wartości od niego
+*/
+void CTable::restore_heap(int i)
+{
+	//ustawia indeksy synow
+	int left = 2 * i, right = (2 * i) + 1, largest;
+	
+	/*
+	Poniższe warunki sprawdzają kto jest większy lewy syn, prawy syn, 
+	czy ojciec
+	*/
+	if (left < heapSize && table[left] > table[i])
+	{
+		largest = left;
+	}
+	else
+	{
+		largest = i;
+	}
+	if (right < heapSize && table[right] > table[largest])
+	{
+		largest = right;
+	}
+	/*
+	W sytuacji jeśli któryś z synów jest większy od ojca, 
+	następuje rekurencyjne wywołanie restore_heap, gdzie sprawdza się dla
+	węzła w którym znaleziono większą wartość, nie zaburzony został kopiec.
+	*/
+	if (largest != i)
+	{
+		//zamienia wiekszego syna z ojcem
+		swap_elem(table[i], table[largest]);
+		restore_heap(largest);
+	}
 }
 
 CTable::CTable()
 {
 	iloscPorownan = 0;
 	iloscPrzestawien = 0;
+	heapSize = sizeTable;
 	table = nullptr;
 	way = true; // TYMCZASOWO BO TRZEBA DOPISAÄ† FUNKCJE
 }
@@ -231,16 +265,18 @@ void CTable::insertSort()
 
 void CTable::heapSort()
 {
-	create_root();
-	for (int i = 1;i < sizeTable;i++)
+	build_heap();
+	/*
+	Zamienia korzeń z najmłodszym lisciem, wyrzuca zamieniony element, poza
+	kopiec i przywraca wartość kopca w korzeniu, tak dopóki w kopcu
+	nie zostanie 1 element
+	*/
+	for (int i = sizeTable - 1;i >= 1;i--)
 	{
-		build_heap(i);
+		swap_elem(table[0], table[i]);
+		heapSize--;
+		restore_heap(0);
 	}
-	for (int i = 0;i < sizeTable;i++)
-	{
-		cout << heapTable[i] << " ";
-	}
-	system("pause");
 }					
 void CTable::bubbleSortCOM()
 {
