@@ -144,7 +144,6 @@ void CSortTable::menuMethodChoice()
 		cout << *wsk++ << ", ";
 	cout << endl;
 
-	system("cls");
 	cout << "--------------METODY--------------" << endl;
 	cout << "1. Sortowanie babelkowe" << endl;
 	cout << "2. Sortowanie babelkowe(ciagla kontrola monotonicznosci) " << endl;
@@ -163,11 +162,10 @@ void CSortTable::menuMethodChoice()
 	cout << endl;
 
 	printTable();
-
+	if(flag == '2' || flag == '3')	openToSave();
 	switch (choice)
 	{
 	case'1':
-
 		name = "Sortowanie babelkowe(kontrola monotonicznosci): ";
 		bubbleSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -193,7 +191,6 @@ void CSortTable::menuMethodChoice()
 		break;
 
 	case'2':
-
 		name = "Sortowanie babelkowe(kontrola monotonicznosci): ";
 		bubbleSortCOM(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -266,7 +263,6 @@ void CSortTable::menuMethodChoice()
 		break;
 
 	case'5':
-
 		selectionSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
 		showOrSave(name, ntable);
@@ -413,7 +409,7 @@ void CSortTable::printTable()
 
 	cin >> flag;
 
-	if (flag != '1'&&flag != '2'&&flag != '3') // ???
+	if (flag != '1'&&flag != '2'&&flag != '3') // ??? Dziwne zmien to
 		cout << "Cos poszlo nie tak!" << endl;
 
 

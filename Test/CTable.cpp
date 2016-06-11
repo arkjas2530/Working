@@ -7,7 +7,7 @@ using std::endl;
 void CTable::openToSave()
 {
 	std::string nameFile;
-	cout << "Podaj nazwe pliku do ktorego bedziesz prawdopodobnie zapisywac dane : ";
+	cout << "Podaj nazwe pliku do zapisu: ";
 	cin >> nameFile;
 
 	size_t pos = nameFile.rfind(".txt");
@@ -120,9 +120,6 @@ void CTable::quickSortH(int first,int last)
 }
 void CTable::shakerSort()
 {
-	cout << "1. Sortowanie Rosnace" << std::endl;
-	cout << "2. Sortowanie Malejace" << std::endl;
-
 	int sum = 0;
 	comparision = 0; inversion = 0;
 	for (int i = 0; i < sizeTable-1;i++)
