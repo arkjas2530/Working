@@ -101,24 +101,46 @@ void CTable::selectionSort()
 	//zmienna wskazujaca na element do zmiany(najmniejszy lub największy znaleziony)
 	int element_to_swap;
 	comparision = 0;	inversion = 0;
+	
 	for (int i = 0;i < sizeTable - 1;i++)
 	{
 		//Ustalam pierwszy znaleziony element jako element do zmiany
 		element_to_swap = i;
-		for (int j = i + 1;j < sizeTable;j++)
+		if (way)
 		{
-			comparision++;
-			//Jesli znajduje element mniejszy to wskazuje na niego
-			if (table[element_to_swap] > table[j])
+			for (int j = i + 1;j < sizeTable;j++)
 			{
-				element_to_swap = j;
+				comparision++;
+				//Jesli znajduje element mniejszy to wskazuje na niego
+				if (table[element_to_swap] > table[j])
+				{
+					element_to_swap = j;
+				}
+			}
+			//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
+			if (element_to_swap != i)
+			{
+				inversion++;
+				swap_elem(table[i], table[element_to_swap]);
 			}
 		}
-		//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
-		if (element_to_swap != i)
+		else
 		{
-			inversion++;
-			swap_elem(table[i], table[element_to_swap]);
+			for (int j = i + 1;j < sizeTable;j++)
+			{
+				comparision++;
+				//Jesli znajduje element wiekszy to wskazuje na niego
+				if (table[element_to_swap] < table[j])
+				{
+					element_to_swap = j;
+				}
+			}
+			//Jesli element do zmiany jest rozny od elementu na pozycji poczatkowej to zamieniam je
+			if (element_to_swap != i)
+			{
+				inversion++;
+				swap_elem(table[i], table[element_to_swap]);
+			}
 		}
 	}
 	 
@@ -276,17 +298,35 @@ void CTable::restore_heap(int i)
 	Poniższe warunki sprawdzają kto jest większy lewy syn, prawy syn,
 	czy ojciec
 	*/
-	if (left < heapSize && table[left] > table[i])
+	if (way)
 	{
-		largest = left;
+		if (left < heapSize && table[left] > table[i])
+		{
+			largest = left;
+		}
+		else
+		{
+			largest = i;
+		}
+		if (right < heapSize && table[right] > table[largest])
+		{
+			largest = right;
+		}
 	}
 	else
 	{
-		largest = i;
-	}
-	if (right < heapSize && table[right] > table[largest])
-	{
-		largest = right;
+		if (left < heapSize && table[left] < table[i])
+		{
+			largest = left;
+		}
+		else
+		{
+			largest = i;
+		}
+		if (right < heapSize && table[right] < table[largest])
+		{
+			largest = right;
+		}
 	}
 	/*
 	W sytuacji jeśli któryś z synów jest większy od ojca,
