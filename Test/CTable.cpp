@@ -204,9 +204,7 @@ void CTable::insertSort()
 
 }
 
-/*
-Buduje forme kopca na bazie Tabeli
-*/
+
 void CTable::build_heap()
 {
 	heapSize = sizeTable;
@@ -219,10 +217,6 @@ void CTable::build_heap()
 		restore_heap(i);
 	}
 }
-/*
-Przywrca wartości kopca, tzn sprzwdza czy synowie i-tego węzła
-nie mają większych wartości od niego
-*/
 void CTable::restore_heap(int i)
 {
 	//ustawia indeksy synow

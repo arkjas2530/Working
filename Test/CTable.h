@@ -17,8 +17,9 @@ protected:
 	// Rozmiar tablicy 
 	int sizeTable; 
 
-	// ????
+	// Rozmiar kopca
 	int heapSize;
+
 	// Kierunek sortowania
 	// true - rosnaco, false - malejaco
 	bool way; 
@@ -36,10 +37,15 @@ protected:
 	// Zamienia miejscami elementy podane w parametrach
 	void swap_elem(int &a, int &b);
 
-	// ????
+	/*
+	Buduje forme kopca na bazie Tabeli
+	*/
 	void build_heap();
 
-	// ????
+	/*
+	Przywrca wartości kopca, tzn sprzwdza czy synowie i-tego węzła
+	nie mają większych wartości od niego
+	*/
 	void restore_heap(int i);
 
 	// Zwraca rozmiar tablicy
