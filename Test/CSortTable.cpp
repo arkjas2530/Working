@@ -10,12 +10,19 @@ CSortTable::CSortTable()
 {
 	for (;;)
 	{
-		show_menu();	
+		// Menu glowne
+		show_menu();
+
+		// Menu wyboru kierunku sortowania
 		chooseWay();
+
+		// Menu wyboru metody sortowania
 		menuMethodChoice();
-		
+
+		// Wyswietlenie tablicy
 		printTable();
 		
+		// Koniec z danymi, 
 		cout << "Nacisnij Enter aby kontynuowac..." << endl;
 		system("pause");
 		system("cls");
