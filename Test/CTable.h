@@ -10,31 +10,49 @@ protected:
 	///////////////////////////////////////////////////
 	// Tablica glowna klasy
 	int *table; 
+
+	// ?????
 	int *heapTable;
+
 	// Rozmiar tablicy 
 	int sizeTable; 
+
+	// ????
 	int heapSize;
 	// Kierunek sortowania
 	// true - rosnaco, false - malejaco
 	bool way; 
 	
 	// Przechowuja dane zwiazane z zadaniem!
-	int comparision;	// Liczba porownan
-	int inversion;		// Liczba przestawien
+	// Liczba porownan
+	int comparision;	
+
+	// Liczba przestawien
+	int inversion;		
 	
 	///////////////////////////////////////////////////
 	// METODY
 	///////////////////////////////////////////////////
+	// Zamienia miejscami elementy podane w parametrach
 	void swap_elem(int &a, int &b);
+
+	// ????
 	void build_heap();
+
+	// ????
 	void restore_heap(int i);
 
 	// Zwraca rozmiar tablicy
 	size_t size(); 
 
 public:
+	///////////////////////////////////////////////////
+	// KONSTRUKTORY
+	///////////////////////////////////////////////////
 	CTable();
+
 	~CTable();
+
 	///////////////////////////////////////////////////
 	// METODY
 	///////////////////////////////////////////////////

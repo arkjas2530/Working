@@ -8,6 +8,7 @@
 
 int main()
 {
+	// Wywolanie programu glownego
 	CSortTable tablica;
 	
 	return 0;
