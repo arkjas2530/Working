@@ -13,9 +13,6 @@ CSortTable::CSortTable()
 		// Menu glowne
 		show_menu();
 
-		// Menu wyboru kierunku sortowania
-		chooseWay();
-
 		// Menu wyboru metody sortowania
 		menuMethodChoice();
 
@@ -58,7 +55,12 @@ void CSortTable::show_menu()
 
 		table = creatTable(n);
 		sizeTable = n;
+		// Menu wpisywania danych przez usera
 		menuUserChoice(n);
+
+		// Menu wyboru kierunku sortowania
+		chooseWay();
+
 		break;
 
 	case '2':		
@@ -73,7 +75,12 @@ void CSortTable::show_menu()
 
 		table = creatTable(n);
 		sizeTable = n;
+
+		// Menu losowania danych
 		menuPseudoChoice(n);
+
+		// Menu wyboru kierunku sortowania
+		chooseWay();
 		break;
 
 	case '3':
