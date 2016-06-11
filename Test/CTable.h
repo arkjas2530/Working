@@ -1,6 +1,6 @@
-#include<iostream>
-
 #include "library.h"
+#include <fstream>
+#include<string>
 
 class CTable
 {
@@ -11,8 +11,9 @@ protected:
 	// Tablica glowna klasy
 	int *table; 
 
-	// ?????
-	int *heapTable;
+	char flag; //zmienna decydujaca o sposobie zilustrowania danych
+
+	std::ofstream file;//uchwyt do pliku
 
 	// Rozmiar tablicy 
 	int sizeTable; 
@@ -50,6 +51,8 @@ protected:
 
 	// Zwraca rozmiar tablicy
 	size_t size(); 
+
+	void openToSave();//zapis tabelki do pliku
 
 public:
 	///////////////////////////////////////////////////

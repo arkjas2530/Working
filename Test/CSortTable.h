@@ -27,15 +27,17 @@ class CSortTable:public CTable
 	// Wyswietla i obsluguje metody sortujace
 	void menuMethodChoice();
 
-	// Odpowiada za drukowanie danych w pliku i konsoli 
-	void printTable();
 
-	// Wyswietlanie zawartosci tablicy
-	void showTable();	
-
-	// Zapisz zawrtosc tablicy do pliku 
-	void saveToFile();	
+	void saveFile(std::string name, std::string ntable);
+	//zapis do pliku
 	
+	// zapisz zawrtosc tablicy do pliku 
+	void showTable(std::string name, std::string ntable);
+	
+	//zapisywanie lub pokazywanie danych wszystkich czterech posortowanych 
+	void showOrSave(std::string name, std::string ntable);
+	void changeTable();
+	void printTable();
 public:
 	///////////////////////////////////////////////////
 	// KONSTRUKTOR

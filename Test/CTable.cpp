@@ -4,6 +4,22 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+void CTable::openToSave()
+{
+	std::string nameFile;
+	cout << "Podaj nazwe pliku do ktorego bedziesz prawdopodobnie zapisywac dane : ";
+	cin >> nameFile;
+
+	size_t pos = nameFile.rfind(".txt");
+
+	if (pos == std::string::npos)//nie znaleziono na zadnej pozycji txt
+		file.open(nameFile + ".txt", std::ofstream::out | std::ofstream::app);
+	else
+		file.open(nameFile, std::ofstream::out | std::ofstream::app);
+
+
+}
+
 void CTable::swap_elem(int &a, int &b)
 {
 	int tmp;

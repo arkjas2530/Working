@@ -1,25 +1,22 @@
 #include "CSortTable.h"
+#include <cstdlib>
+#include <random>
+#include <fstream>
 #include"library.h"
 
 using std::cout;
 using std::endl;
 using std::cin;
 
-
 CSortTable::CSortTable()
 {
+	openToSave();
+
 	for (;;)
 	{
-		// Menu glowne
 		show_menu();
-
-		// Menu wyboru metody sortowania
 		menuMethodChoice();
 
-		// Wyswietlenie tablicy
-		printTable();
-		
-		// Koniec z danymi, 
 		cout << "Nacisnij Enter aby kontynuowac..." << endl;
 		system("pause");
 		system("cls");
@@ -34,13 +31,16 @@ void CSortTable::show_menu()
 	cout << "3. Tworzenie tabeli" << endl;
 	cout << "0. Opuszczenie programu" << endl;
 
-	char flag;
+	
 	int n;
-	cout << " * Opcja: "; cin >> flag;
+	cout << " * Opcja: ";
+	char choice;
+	cin >> choice;
 	cout << endl;
 
 	system("cls");
-	switch (flag)
+	
+	switch (choice)
 	{
 	case '1':
 
@@ -89,7 +89,9 @@ void CSortTable::show_menu()
 		break;
 
 	case'0':
+
 		cout << "Koniec dzialania programu. " << endl;
+		file.close();
 		exit(0);
 
 	default:
@@ -104,9 +106,9 @@ void CSortTable::chooseWay()
 	cout << "1. Sortuja rosnaco " << endl;
 	cout << "2. Sortuja malejaco " << endl;
 
-	char flag;
-	cin >> flag;
-	switch (flag)
+	char choice;
+	cin >> choice;
+	switch (choice)
 	{
 	case '1':
 		way = true;
@@ -167,13 +169,21 @@ void CSortTable::menu()
 
 void CSortTable::menuMethodChoice()
 {
+	std::string name, ntable;
+	way = true; // na poczatku zawsze ma sortowac rosnaco
+
 	system("cls");
+
 	cout << "----------------------------" << endl;
 	cout << "Wylosowana tablica: " << endl;
 	cout << "----------------------------" << endl;
+	int *wsk = table;
+	
+	for (int i = 0; i < sizeTable; i++)
+		cout << *wsk++ << ", ";
+	cout << endl;
 
-	showTable();
-
+	system("cls");
 	cout << "--------------METODY--------------" << endl;
 	cout << "1. Sortowanie babelkowe" << endl;
 	cout << "2. Sortowanie babelkowe(ciagla kontrola monotonicznosci) " << endl;
@@ -184,106 +194,354 @@ void CSortTable::menuMethodChoice()
 	cout << "7. Sortowanie szybkie(algorytm podzialu Horne'a)" << endl;
 	cout << "8. Sortowanie szybkie(algorytm podzialu Lomuta)" << endl;
 	cout << "9. Sortowanie przez kopcowanie" << endl;
-	cout << "0. Powrot do mentu glwonego" << endl;
+	cout << "0. Powrot do mentu glownego" << endl;
 
 	cout << " * Opcja : ";
-	char flag; cin >> flag;
+	char choice;
+	cin >> choice;
 	cout << endl;
-	switch (flag)
+
+	printTable();
+
+	switch (choice)
 	{
 	case'1':
 
-		bubbleSort();
+		name = "Sortowanie babelkowe(kontrola monotonicznosci): ";
+		bubbleSort(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		bubbleSort();	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		bubbleSort(); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		bubbleSort();//sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
+
 		break;
 
 	case'2':
-		bubbleSortCOM();
+
+		name = "Sortowanie babelkowe(kontrola monotonicznosci): ";
+		bubbleSortCOM(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		bubbleSortCOM();	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		bubbleSortCOM(); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		bubbleSortCOM();//sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
 		break;
 
 	case'3':
-		shakerSort();
+		name = "Sortowanie babelkowe z wariantem wahadlowym : ";
+		shakerSort(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		shakerSort();	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		shakerSort(); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		shakerSort();//sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
+
 		break;
 	case'4':
+		name = "Sortowanie kubelkowe : ";
+		bucketSort(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
 
-		bucketSort();
+		bucketSort();	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		bucketSort(); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		bucketSort();//sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
 		break;
 
 	case'5':
 
-		selectionSort();
+		selectionSort(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		selectionSort(); //sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		selectionSort();  //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		selectionSort();//sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
 		break;
 
 	case'6':
+		name = "Sortowanie przez wstawianie ";
+		insertSort(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
 
-		insertSort();
+		insertSort();	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		insertSort(); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		insertSort();//sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
 		break;
 
 	case'7':
+		name = " Sortowanie szybkie Hoarne";
 
-		quickSortH(0,sizeTable-1);
+		quickSortH(0, sizeTable - 1); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		quickSortH(0, sizeTable - 1);	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		quickSortH(0, sizeTable - 1); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
+		quickSortH(0, sizeTable - 1); //sortowanie tablicy posortowanej niemalejaco 
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
 		break;
 
 	case'8':
+		name = "Sortowanie szybkie Lomuta";
 
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		quickSortL(0, sizeTable - 1);	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
 		quickSortL(0, sizeTable - 1);
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
+
 		break;
 
 	case'9':
 
+		name = "Sortowanie (kopcowanie)";
+
+		heapSort(); //sortowanie tablicy losowej
+		ntable = "tablica z wartosciami losowymi";
+		showOrSave(name, ntable);
+
+		heapSort();	//sortowanie tablicy posortowanej
+		ntable = "tablica posortowana rosnaco ";
+		showOrSave(name, ntable);
+
+
+		changeTable();
+		heapSort(); //sortowanie tablicy czesciowo posortowanej
+		ntable = "tablica czesciowo posortowana";
+		showOrSave(name, ntable);
+
+		way = false;
+		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		way = true;
 		heapSort();
+		ntable = "tablica posortowana malejaco";
+		showOrSave(name, ntable);
+
 		break;
 
 	case '0':
 		system("cls");
 		CSortTable();
 		break;
-		
+
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
-		menuMethodChoice();
 
 	}
 }
-	
-void CSortTable::showTable()
+void CSortTable::printTable()
 {
+	flag = '0';
 	system("cls");
+	cout << "Co zrobic z tablica: " << endl;
+	cout << "1. Wyswietlic dane: " << endl;
+	cout << "2. Zapisac sorotwane dane do pliku " << endl;
+	cout << "3. Wyswietlic i zapisac sortowane dane do pliku" << endl;
+	//zmienna okreslajaca pozniejsze wyswietlanie
+
+	cin >> flag;
+
+	if (flag != '1'&&flag != '2'&&flag != '3')
+		cout << "Cos poszlo nie tak!" << endl;
+
+
+}
+void CSortTable::showTable(std::string name, std::string ntable)
+{
+
 	cout << "----------------------------" << endl;
+	cout << "Metoda : " << name << endl;
+	cout << "Jaka tablica zostala poddana sortowaniu : " << ntable << endl;
 	cout << "Dane w tablicy:  " << endl;
-	cout << "----------------------------" << endl;
+
 
 	int *wsk = table;
-	for(int i = 0; i < sizeTable; i++)
+	for (int i = 0; i < sizeTable; i++)
 		cout << *wsk++ << ", ";
 	cout << endl;
 
-	if(comparision) cout << "Ilosc porownan: " << comparision << endl;
-	if(inversion) cout << "Ilosc przestawien: " << inversion << endl;
+	cout << "* Ilosc porownan: " << comparision << endl;
+	cout << "* Ilosc przestawien: " << inversion << endl;
 	cout << endl;
 }
 
-
-// Zobaczcie czy tak to moze byc!!
-void CSortTable::saveToFile()
+void CSortTable::showOrSave(std::string name, std::string ntable)
 {
-	std::string nameFile;
-	cout << "Podaj nazwe pliku: "; cin >> nameFile;
-	std::ofstream outFile(nameFile + ".txt");
-	if(outFile.fail())
+	switch (flag)
 	{
-		cout << "Cos poszlo nie tak! " << endl;
-		exit(0);
+	case '1':
+		showTable(name, ntable);
+		break;
+	case '2':
+		saveFile(name, ntable);
+		break;
+	case '3':
+		showTable(name, ntable);
+		saveFile(name, ntable);
 	}
-	// Zapis tablicy do pliku
-	int *wsk = table;
-	for(int i = 0; i < sizeTable; i++)
-		outFile << *wsk++ << ' ';
-	outFile << endl;
 
-	outFile.close();
+}
+void CSortTable::changeTable()
+{
+	int a = 0;
+	int b = sizeTable / 10;
+
+	if (b == 0) //przypadek gdy ilosc liczb jest mniejsza od 10 wtedy zmieniamy co najmniej 2 elementy tab ze soba
+		b++;
+
+	int *tableHelper = creatTable(b + 1); //tablica w ktorej bedzie losowo ulozone 10 % elementow tablicy table
+
+										  // Stworzenie generatora liczb pseudolosowych u¿ywaj¹cego algorytmu mt19937
+	std::random_device rd;
+	std::mt19937 mt(rd());
+	std::uniform_int_distribution<int> generate(a, b);
+	// Przypisanie nowo wygenerowanej liczby pseudolosowej:
+	for (int i = 0; i <= b; i++)
+	{
+		tableHelper[i] = generate(mt);//generowanie indeksu
+		tableHelper[i] = table[tableHelper[i]]; //wstawienie elementu table do tableHelper
+	}
+
+	for (int i = 0; i <= b; i++)
+	{
+		table[i] = tableHelper[i];
+	}
+
+	delete[] tableHelper;
 }
 
-void CSortTable::printTable()
+void CSortTable::saveFile(std::string name, std::string ntable)
+{
+
+	file << "----------------------------" << endl;
+	file << "Metoda : " << name << endl;
+	file << "Jaka tablica zostala poddana sortowaniu : " << ntable << endl;
+	file << "Dane w tablicy:  " << endl;
+
+
+	int *wsk = table;
+	for (int i = 0; i < sizeTable; i++)
+		file << *wsk++ << ", ";
+	file << endl;
+
+	file << "* Ilosc porownan: " << comparision << endl;
+	file << "* Ilosc przestawien: " << inversion << endl;
+	file << endl;
+
+}
+
+/*void CSortTable::printTable()
 {
 	system("cls");
 	cout << "Co zrobic z tablica: " << endl; 
@@ -309,4 +567,4 @@ void CSortTable::printTable()
 		cout << "Cos poszlo nie tak!" << endl;
 		printTable();
 	}
-}
+}*/
