@@ -49,32 +49,49 @@ size_t CTable::size()
 void CTable::bubbleSort()
 {
 	
-	int sum;
 	inversion = 0;
 	comparision = 0;
 
-
-	for (int i = 0; i <  sizeTable- 1; i++)
+	if (way)
 	{
-		sum = 0;
-
-		for (int j = 0; j < sizeTable - 1-i; j++)
+		for (int i = 0; i < sizeTable - 1; i++)
 		{
-			if (table[j] > table[j + 1])
-			{
-				swap_elem(table[j], table[j + 1]);
-				inversion++;
-				sum++;
-			}
-			comparision++;
-		}
 
-		if (sum == 0)
-			break;
+
+			for (int j = 0; j < sizeTable - 1 - i; j++)
+			{
+				if (table[j] > table[j + 1])
+				{
+					swap_elem(table[j], table[j + 1]);
+					inversion++;
+
+				}
+				comparision++;
+			}
+
+		}
+	}
+	else
+	{
+		for (int i = 0; i < sizeTable - 1; i++)
+		{
+
+
+			for (int j = 0; j < sizeTable - 1 - i; j++)
+			{
+				if (table[j] < table[j + 1])
+				{
+					swap_elem(table[j], table[j + 1]);
+					inversion++;
+
+				}
+				comparision++;
+			}
+
+		}
 	}
 
-	for (int i = 0; i < sizeTable; i++)
-		cout << table[i] << " ";
+	
 	
 
 
@@ -191,33 +208,53 @@ void CTable::insertSort()
 	int sum;
 	comparision = 0;
 	inversion = 0;
-
-	for (int i = 0; i < sizeTable - 1; i++)
+	if (way)
 	{
-		temp = table[i + 1];//zmienna porownywana z posortowana tab
-		j = i;
-		sum = 0;
-
-
-		while (j >= 0 && table[j] > temp)
+		for (int i = 0; i < sizeTable - 1; i++)
 		{
-			table[j + 1] = table[j];
-			table[j] = temp;
-			j--;
-			inversion++;
-			sum++;
+			temp = table[i + 1];//zmienna porownywana z posortowana tab
+			j = i;
+			sum = 0;
+
+
+			while (j >= 0 && table[j] > temp)
+			{
+				table[j + 1] = table[j];
+				table[j] = temp;
+				j--;
+				inversion++;
+				sum++;
+			}
+
+			if (j == -1) // w momencie w ktorym nie nastapi przestawienie bo while zostanie spelniony trzeba dodac 1
+				comparision += sum;
+			else
+				comparision += 1 + sum;
+
+		}
+	}
+	else
+	{
+		for (int i = 0; i < sizeTable - 1; i++)
+		{
+			temp = table[i + 1];//zmienna porownywana z posortowana tab
+			j = i;
+			sum = 0;
+
+
+			while (j >= 0 && table[j] < temp)
+			{
+				table[j + 1] = table[j];
+				table[j] = temp;
+				j--;			
+			}
+
 		}
 
-		if (j == -1) // w momencie w ktorym nie nastapi przestawienie bo while zostanie spelniony trzeba dodac 1
-			comparision += sum;
-		else
-			comparision+= 1 + sum;
 
 	}
 
 }
-
-
 void CTable::build_heap()
 {
 	heapSize = sizeTable;
@@ -427,29 +464,57 @@ int CTable::partitionHoare(int first, int last)
 		i = p - 1;  
 		j = r + 1;
 
-		while (i<j)
+		if (way)
 		{
-			do
+			while (i<j)
 			{
-				j--;
+				do
+				{
+					j--;
 
-			} while (table[j - 1] > x);
+				} while (table[j - 1] > x);
 
-			do {
+				do {
 
-				i++;
+					i++;
 
-			} while (table[i] < x);
+				} while (table[i] < x);
 
-			if (i < j)
-			{
-				swap_elem(table[i], table[j - 1]);
-			
+				if (i < j)
+				{
+					swap_elem(table[i], table[j - 1]);
+
+				}
+				else
+					return j;
 			}
-			else
-				return j;
+		}
+		else
+		{
+			while (i<j)
+			{
+				do
+				{
+					j--;
+
+				} while (table[j - 1] < x);
+
+				do {
+
+					i++;
+
+				} while (table[i] > x);
+
+				if (i < j)
+				{
+					swap_elem(table[i], table[j - 1]);
+
+				}
+				else
+					return j;
+			}
 		}
 
-		return 0; // dopisalem Ci to, ale raczej do zmiany !kulis :)
+		return 0; 
 	}
 
