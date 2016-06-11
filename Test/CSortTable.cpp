@@ -10,8 +10,6 @@ using std::cin;
 
 CSortTable::CSortTable()
 {
-	openToSave();
-
 	for (;;)
 	{
 		show_menu();
@@ -28,7 +26,6 @@ void CSortTable::show_menu()
 	cout << "--------------MENU GLOWNE--------------" << endl;
 	cout << "1. Reczenie uzupelnij tablice" << endl;
 	cout << "2. Losuj dane do tablicy " << endl;
-	cout << "3. Tworzenie tabeli" << endl;
 	cout << "0. Opuszczenie programu" << endl;
 
 	
@@ -58,9 +55,6 @@ void CSortTable::show_menu()
 		// Menu wpisywania danych przez usera
 		menuUserChoice(n);
 
-		// Menu wyboru kierunku sortowania
-		chooseWay();
-
 		break;
 
 	case '2':		
@@ -78,14 +72,6 @@ void CSortTable::show_menu()
 
 		// Menu losowania danych
 		menuPseudoChoice(n);
-
-		// Menu wyboru kierunku sortowania
-		chooseWay();
-		break;
-
-	case '3':
-		menu();
-		// TWORZENIE TABELKI Z DANYMI
 		break;
 
 	case'0':
@@ -100,28 +86,7 @@ void CSortTable::show_menu()
 	}
 	cout << endl;
 }
-void CSortTable::chooseWay()
-{
-	cout << "Wybierz kierunek sortowania: " << endl; 
-	cout << "1. Sortuja rosnaco " << endl;
-	cout << "2. Sortuja malejaco " << endl;
 
-	char choice;
-	cin >> choice;
-	switch (choice)
-	{
-	case '1':
-		way = true;
-		break;
-	case '2':
-		way = false;
-		break;
-	default:
-		system("cls");
-		cout << "Cos poszlo nie tak. Wybierz 1 lub 2" << endl;
-		chooseWay();
-	}
-}
 void CSortTable::menuPseudoChoice(int _n)
 {
 	int a, b;
@@ -162,10 +127,6 @@ void CSortTable::menuUserChoice(int _n)
 	}
 }
 
-void CSortTable::menu()
-{
-
-}
 
 void CSortTable::menuMethodChoice()
 {
@@ -452,7 +413,7 @@ void CSortTable::printTable()
 
 	cin >> flag;
 
-	if (flag != '1'&&flag != '2'&&flag != '3')
+	if (flag != '1'&&flag != '2'&&flag != '3') // ???
 		cout << "Cos poszlo nie tak!" << endl;
 
 

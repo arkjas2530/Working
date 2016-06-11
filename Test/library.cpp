@@ -27,6 +27,6 @@ void mixingTable(int *arr, int first, int last)
 	{
 		int x = generate(mt);
 		int y = generate(mt);
-		std::swap(x, y);
+		std::swap(arr[x], arr[y]);
 	}
 }

@@ -8,10 +8,6 @@
 
 class CSortTable:public CTable
 {
-	// Kierunek sortowania
-	// true - rosnaco, false - malejaco
-	void chooseWay();
-	
 	// Wyswietla i obsluguje menu glowne
 	void show_menu();
 
@@ -20,9 +16,6 @@ class CSortTable:public CTable
 
 	// Losuje dane do tablicy
 	void menuPseudoChoice(int _n);
-
-	// Wyswietla tabelke
-	void menu();
 
 	// Wyswietla i obsluguje metody sortujace
 	void menuMethodChoice();
