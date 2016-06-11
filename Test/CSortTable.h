@@ -3,7 +3,7 @@
 #include <string>
 #include <cstdlib>
 #include <random>
-
+#include<cmath>
 #include "CTable.h"
 
 class CSortTable:public CTable
@@ -29,7 +29,7 @@ class CSortTable:public CTable
 	
 	//zapisywanie lub pokazywanie danych wszystkich czterech posortowanych 
 	void showOrSave(std::string name, std::string ntable);
-	void changeTable();
+
 	void printTable();
 public:
 	///////////////////////////////////////////////////

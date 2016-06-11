@@ -153,7 +153,7 @@ void CTable::quickSortH(int first,int last)
 		int pivot = partitionHoare(first, last);
 
 		// Wywolanie rekurencyjne funkcji 
-		quickSortH(first, pivot - 1);
+		quickSortH(first, pivot-1);
 		quickSortH(pivot + 1, last);
 	}
 }

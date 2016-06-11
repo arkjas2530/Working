@@ -1,7 +1,4 @@
 #include "CSortTable.h"
-#include <cstdlib>
-#include <random>
-#include <fstream>
 #include"library.h"
 
 using std::cout;
@@ -132,7 +129,7 @@ void CSortTable::menuMethodChoice()
 {
 	std::string name, ntable;
 	way = true; // na poczatku zawsze ma sortowac rosnaco
-
+	double temp= ceil(static_cast<double>(sizeTable / 10.));// zmienna liczaca 10% z tablicy
 	system("cls");
 
 	cout << "----------------------------" << endl;
@@ -183,13 +180,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table,0,static_cast<int> (temp)); //10% zmiana elementow posortowanej tablicyy
 		bubbleSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		bubbleSort(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		bubbleSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -208,13 +205,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		bubbleSortCOM(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		bubbleSortCOM(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		bubbleSortCOM();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -231,14 +228,13 @@ void CSortTable::menuMethodChoice()
 		ntable = "tablica posortowana rosnaco ";
 		showOrSave(name, ntable);
 
-
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));;
 		shakerSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		shakerSort(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		shakerSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -256,13 +252,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		bucketSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		bucketSort(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		bucketSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -279,13 +275,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		selectionSort();  //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		selectionSort(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		selectionSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -303,13 +299,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		insertSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		insertSort(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		insertSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -328,13 +324,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		quickSortH(0, sizeTable - 1); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		quickSortH(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		quickSortH(0, sizeTable - 1); //sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
@@ -353,7 +349,7 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		quickSortL(0, sizeTable - 1); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
@@ -380,13 +376,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 
-		changeTable();
+		mixingTable(table, 0, static_cast<int> (temp));
 		heapSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortL(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		heapSort(); //sortowanie tablicy posortowanej malejaco
 		way = true;
 		heapSort();
 		ntable = "tablica posortowana malejaco";
@@ -459,34 +455,6 @@ void CSortTable::showOrSave(std::string name, std::string ntable)
 	}
 
 }
-void CSortTable::changeTable()
-{
-	int a = 0;
-	int b = sizeTable / 10;
-
-	if (b == 0) //przypadek gdy ilosc liczb jest mniejsza od 10 wtedy zmieniamy co najmniej 2 elementy tab ze soba
-		b++;
-
-	int *tableHelper = creatTable(b + 1); //tablica w ktorej bedzie losowo ulozone 10 % elementow tablicy table
-
-										  // Stworzenie generatora liczb pseudolosowych u¿ywaj¹cego algorytmu mt19937
-	std::random_device rd;
-	std::mt19937 mt(rd());
-	std::uniform_int_distribution<int> generate(a, b);
-	// Przypisanie nowo wygenerowanej liczby pseudolosowej:
-	for (int i = 0; i <= b; i++)
-	{
-		tableHelper[i] = generate(mt);//generowanie indeksu
-		tableHelper[i] = table[tableHelper[i]]; //wstawienie elementu table do tableHelper
-	}
-
-	for (int i = 0; i <= b; i++)
-	{
-		table[i] = tableHelper[i];
-	}
-
-	delete[] tableHelper;
-}
 
 void CSortTable::saveFile(std::string name, std::string ntable)
 {
@@ -508,30 +476,3 @@ void CSortTable::saveFile(std::string name, std::string ntable)
 
 }
 
-/*void CSortTable::printTable()
-{
-	system("cls");
-	cout << "Co zrobic z tablica: " << endl; 
-	cout << "1. Wyswietlic dane: " << endl;
-	cout << "2. Zapisac sorotwane dane do pliku " << endl;
-	cout << "3. Wyswietlic i zapisac sortowane dane do pliku" << endl;
-
-	char flag; cin >> flag;
-
-	switch(flag)
-	{
-	case '1':
-		showTable();
-		break;
-	case '2': 
-		saveToFile();
-		break;
-	case '3':
-		showTable();
-		saveToFile();
-		break;
-	default:
-		cout << "Cos poszlo nie tak!" << endl;
-		printTable();
-	}
-}*/
