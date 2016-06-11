@@ -38,18 +38,34 @@ void CSortTable::show_menu()
 	cout << endl;
 
 	system("cls");
-
 	switch (flag)
 	{
 	case '1':
-		cout << "Podaj ilosc elementow do tablicy: ";	cin >> n;
+
+		cout << "Podaj ilosc elementow do wpisania: ";
+		while (!(cin >> n))
+		{
+			cout << "Podaj ilosc elementow do wpisania: "; 
+			cin.clear();
+			cin.sync();
+			cin.ignore();
+		}
+
 		table = creatTable(n);
 		sizeTable = n;
 		menuUserChoice(n);
 		break;
 
-	case '2':
-		cout << "Podaj ilosc elementow do losowania: ";	cin >> n;
+	case '2':		
+		cout << "Podaj ilosc elementow do losowania: ";
+		while (!(cin >> n))
+		{
+			cout << "Podaj ilosc elementow do losowania: ";
+			cin.clear();
+			cin.sync();
+			cin.ignore();
+		}
+
 		table = creatTable(n);
 		sizeTable = n;
 		menuPseudoChoice(n);
@@ -66,6 +82,7 @@ void CSortTable::show_menu()
 
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
+		show_menu();
 	}
 	cout << endl;
 }
@@ -96,7 +113,14 @@ void CSortTable::menuPseudoChoice(int _n)
 	int a, b;
 	// Zabezpieczenie generatora, da sie to jakos zrobiæ na TRY CATCH ??? ~AREK
 
-	cout << "Podaj zakres generacji liczb: "; cin >> a >> b;
+	cout << "Podaj zakres generacji liczb: ";
+	while (!(cin >> a >> b))
+	{
+		cout << "Podaj zakres generacji liczb : ";
+		cin.clear();
+		cin.sync();
+		cin.ignore();
+	}
 	while (a >= b)
 	{
 		cout << "Poczatek zakresu jest wiekszy lub rowny koncu. Sprobuj jeszcze raz" << endl;
@@ -204,6 +228,7 @@ void CSortTable::menuMethodChoice()
 		
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
+		menuMethodChoice();
 
 	}
 }
@@ -270,5 +295,6 @@ void CSortTable::printTable()
 		break;
 	default:
 		cout << "Cos poszlo nie tak!" << endl;
+		printTable();
 	}
 }

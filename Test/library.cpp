@@ -1,5 +1,4 @@
 #include"library.h"
-#include<iostream>
 
 int *creatTable(int _n)
 {
