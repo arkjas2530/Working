@@ -13,7 +13,7 @@ CSortTable::CSortTable()
 	for (;;)
 	{
 		show_menu();	
-
+		chooseWay();
 		menuMethodChoice();
 		
 		printTable();
@@ -66,6 +66,29 @@ void CSortTable::show_menu()
 
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
+	}
+	cout << endl;
+}
+void CSortTable::chooseWay()
+{
+	cout << "Wybierz kierunek sortowania: " << endl; 
+	cout << "1. Sortuja rosnaco " << endl;
+	cout << "2. Sortuja malejaco " << endl;
+
+	char flag;
+	cin >> flag;
+	switch (flag)
+	{
+	case '1':
+		way = true;
+		break;
+	case '2':
+		way = false;
+		break;
+	default:
+		system("cls");
+		cout << "Cos poszlo nie tak. Wybierz 1 lub 2" << endl;
+		chooseWay();
 	}
 }
 void CSortTable::menuPseudoChoice(int _n)

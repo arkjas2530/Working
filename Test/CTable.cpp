@@ -19,7 +19,6 @@ CTable::CTable()
 	inversion = 0;
 	heapSize = sizeTable;
 	table = nullptr;
-	way = true; // TYMCZASOWO BO TRZEBA DOPISAÄ† FUNKCJE
 }
 
 CTable::~CTable()
@@ -277,7 +276,56 @@ void CTable::heapSort()
 					
 void CTable::bubbleSortCOM()
 {
-	;
+	// Liczniki 
+	// @i - wskazuje do ktorego elementu tablica jest posortowana 
+	// @j - przechodzi przez elementy petli FOR od konca
+	int i = -1, j;
+
+	// Flaga sterujaca petla WHILE
+	bool isMonotonicity;
+	do
+	{
+		// Ustaw wartosc flagi sterujacej na false
+		isMonotonicity = false;
+
+		// Przechodz i sprawdzaj tablice od konca
+		// Po przejsciu calej tablicy ZAWSZE pierwszy element znajduje na swoim miejscu, 
+		// dlatego nie sprawdzana cala tablica
+		for (j = sizeTable - 1, i++, comparision++; i < j; j--)
+		{
+
+			if (way)
+			{	// Sortuj rosnaco
+				if (table[j] < table[j - 1])
+				{
+					// Zamiana elementow 
+					std::swap(table[j], table[j - 1]);
+
+					// Jesli nastapi przestawienie ustaw flage na true
+					isMonotonicity = true;
+
+					// Zliczanie ilosci zamian elementow
+					inversion++;
+				}
+			}
+			else
+			{	// Sortuj malejaco
+				if (table[j] > table[j - 1])
+				{
+					// Zamiana elementow 
+					std::swap(table[j], table[j - 1]);
+
+					// Jesli nastapi przestawienie ustaw flage na true
+					isMonotonicity = true;
+
+					// Zliczanie ilosci zamian elementow
+					inversion++;
+				}
+			}
+		}
+
+		// Jesli nie nastapi przestawienie zakoncz petle
+	} while (isMonotonicity);
 }
 void CTable::bucketSort()
 {
@@ -307,9 +355,18 @@ void CTable::bucketSort()
    
     // Wartosci niezerowych licznikow zapisz do table
     // tyle razy ile wystepuja w tabe
-    for(int i = 0, j = 0; i < sizeTableHelper; i++)
-        while(tableHelper[i]--)
-			table[j++] = i + min;	
+	if(way)
+	{
+		for (int i = 0, j = 0; i < sizeTableHelper; i++)
+			while (tableHelper[i]--)
+				table[j++] = i + min;
+	}
+	else
+	{
+		for (int i = sizeTableHelper - 1, j = 0; i > 0 ; i--)
+			while (tableHelper[i]--)
+				table[j++] = i + min;
+	}
 }
 void CTable::quickSortL(int first, int last)
 {
@@ -387,6 +444,6 @@ int CTable::partitionHoare(int first, int last)
 				return j;
 		}
 
-
+		return 0; // dopisalem Ci to, ale raczej do zmiany !kulis :)
 	}
 

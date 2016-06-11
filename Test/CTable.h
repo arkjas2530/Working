@@ -17,8 +17,8 @@ protected:
 	bool way; 
 	
 	// Przechowuja dane zwiazane z zadaniem!
-	int comparision;
-	int inversion;
+	int comparision;	// Liczba porownan
+	int inversion;		// Liczba przestawien
 	
 	///////////////////////////////////////////////////
 	// METODY
@@ -33,13 +33,12 @@ public:
 	// METODY
 	///////////////////////////////////////////////////
 	int size(); // sprawdza rozmiar tablicy, to powinno byc typu size_t, ale trzeba bedzie uwazac na warning
-	int swap(); // zamienia dwie tablice TEGO typu
-
 
 	//	Weronika
 	void bubbleSort();		// Sortowanie bąbelkowe
 	void selectionSort();	// Sortowanie przez wybieranie
 	void quickSortH(int first, int last);		// Sortowanie szybkie Hoare'a
+	int partitionHoare(int first, int last);
 
 	//	Arek
 	void shakerSort();		// Sortowanie bąbelkowe wariant wahadlowym GOTOWE
@@ -51,7 +50,7 @@ public:
 	void bucketSort();		// Sortowanie kubełkowe
 	void quickSortL(int first, int last);	// Sortowanie szybkie Lomuta
 	int partitionLomut(int first, int last);		
-	int partitionHoare(int first, int last);
+
 
 
 };

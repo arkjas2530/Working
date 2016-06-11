@@ -8,6 +8,10 @@ class CSortTable:public CTable
 private:
 /* Losuje liczby do tablicy
 Arg: @n - wielkosc tablicy*/
+
+	// Kierunek sortowania
+	// true - rosnaco, false - malejaco
+	void chooseWay();
 	void menuPseudoChoice(int _n);
 	/*
 	Pokazuje menu glowne
