@@ -363,7 +363,7 @@ void CTable::bucketSort()
 	}
 	else
 	{
-		for (int i = sizeTableHelper - 1, j = 0; i > 0 ; i--)
+		for (int i = sizeTableHelper - 1, j = 0; i >= 0 ; i--)
 			while (tableHelper[i]--)
 				table[j++] = i + min;
 	}
