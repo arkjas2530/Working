@@ -181,6 +181,8 @@ void CSortTable::menuMethodChoice()
 
 
 		mixingTable(table,0,static_cast<int> (temp)); //10% zmiana elementow posortowanej tablicyy
+		for (int i = 0; i < 6;i ++)
+			cout << table[i] << " ";
 		bubbleSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
@@ -429,14 +431,7 @@ void CSortTable::showTable(std::string name, std::string ntable)
 	cout << "----------------------------" << endl;
 	cout << "Metoda : " << name << endl;
 	cout << "Jaka tablica zostala poddana sortowaniu : " << ntable << endl;
-	cout << "Dane w tablicy:  " << endl;
 
-
-	int *wsk = table;
-	for (int i = 0; i < sizeTable; i++)
-	cout << *wsk++ << ", ";
-	cout << endl;
-	
 	if (simple_method == true)
 	{
 		cout << "* Ilosc porownan: " << comparision << endl;

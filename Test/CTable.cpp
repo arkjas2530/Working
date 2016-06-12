@@ -76,7 +76,7 @@ void CTable::bubbleSort()
 		{
 
 
-			for (int j = 0; j < sizeTable - 1 - i; j++)
+			for (int j = 0; j < sizeTable - 1; j++)
 			{
 				if (table[j] < table[j + 1])
 				{

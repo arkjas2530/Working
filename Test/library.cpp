@@ -23,10 +23,11 @@ void mixingTable(int *arr, int first, int last)
 	std::random_device rd;
 	std::mt19937 mt(rd());
 	std::uniform_int_distribution<int> generate(first, last);
-	for (int i = last - first; i >= 0; i--)
+	for (int i = last-first ; i >= 0; i--)
 	{
 		int x = generate(mt);
 		int y = generate(mt);
 		std::swap(arr[x], arr[y]);
 	}
+
 }
