@@ -525,52 +525,51 @@ int CTable::partitionLomut(int first, int last)
 
 	return i;
 }
-int CTable::partitionHoare(int first, int last)
+int CTable::partitionHoare(int first, int last) 
 {
 	
 		int x;
 		int i, j;
-		int p = first;
-		int r = last;
+	
 
-		x = table[p]; //element rozdzielajacy na poczatku tablicy
-		i = p - 1;  
-		j = r + 1;
+		x = table[first]; //element rozdzielajacy na poczatku tablicy
+		i = first - 1;  //na poczatku wskazuje przed tablice
+		j = last + 1;//-||-
 
 		if (way)
 		{
-			while (i<j)
+			while (true)
 			{
 				do
 				{
-					j--;
+					j--; //dekrementacja az znajdzie element miejszy od x
 
-				} while (table[j - 1] > x);
+				} while (table[j] > x);
 
 				do {
 
-					i++;
+					i++; //inkrementacja az znajdzie elemnent wiekszy od x
 
 				} while (table[i] < x);
 
 				if (i < j)
 				{
-					swap_elem(table[i], table[j - 1]);
+					swap_elem(table[i], table[j]);
 
 				}
-				else
-					return j;
+				else 
+					break;
 			}
 		}
 		else
 		{
-			while (i<j)
+			while (true)
 			{
 				do
 				{
 					j--;
 
-				} while (table[j - 1] < x);
+				} while (table[j] < x);
 
 				do {
 
@@ -580,14 +579,14 @@ int CTable::partitionHoare(int first, int last)
 
 				if (i < j)
 				{
-					swap_elem(table[i], table[j - 1]);
+					swap_elem(table[i], table[j]);
 
 				}
 				else
-					return j;
+					break;
 			}
 		}
 
-		return 0; 
+		return j; 
 	}
 

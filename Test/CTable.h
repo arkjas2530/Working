@@ -76,7 +76,7 @@ public:
 	void bubbleSort();		// Sortowanie bąbelkowe
 	void selectionSort();	// Sortowanie przez wybieranie
 	void quickSortH(int first, int last);		// Sortowanie szybkie Hoare'a
-	int partitionHoare(int first, int last);
+	int partitionHoare(int first, int last); // funkcja sortujaca w miejscu tablice
 
 	//	Arek
 	void shakerSort();		// Sortowanie bąbelkowe wariant wahadlowym GOTOWE
