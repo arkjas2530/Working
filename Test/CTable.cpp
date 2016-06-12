@@ -439,27 +439,31 @@ void CTable::bucketSort()
 	clock_t start = clock();
     // Ustawienie poczatkowych wartosci dla max i min
     int min = table[0], max = table[0];
-   
+	inversion = 0;
     // Szukanie minimum oraz maksimum
     for(int i = 1; i < sizeTable; i++)
     {
         if(min > table[i]) min = table[i];
         if(max < table[i]) max = table[i];
+		inversion++;
     }
     // Wielkosc tablicy pomocniczej
     int sizeTableHelper = max - min + 1;
    
     // Tworzenie tablicy pomocniczej
     int *tableHelper = creatTable(sizeTableHelper);
-	comparision = sizeTable; inversion = sizeTable - 1;
+	comparision = 0; 
 
     // Zerowanie licznikow tablicy
     for(int i = 0; i < sizeTableHelper; i++)
         tableHelper[i] = 0;   
 
     // Zliczanie licznikow
-    for(int i = 0; i < sizeTable; i++)
-        tableHelper[table[i] - min]++;
+	for (int i = 0; i < sizeTable; i++)
+	{
+		tableHelper[table[i] - min]++;
+		comparision++;
+	}
    
     // Wartosci niezerowych licznikow zapisz do table
     // tyle razy ile wystepuja w tabe
@@ -473,7 +477,10 @@ void CTable::bucketSort()
 	{
 		for (int i = sizeTableHelper - 1, j = 0; i >= 0 ; i--)
 			while (tableHelper[i]--)
+			{
 				table[j++] = i + min;
+				inversion++;
+			}
 	}
 
 	clock_t stop = clock();
