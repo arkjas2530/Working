@@ -181,8 +181,6 @@ void CSortTable::menuMethodChoice()
 
 
 		mixingTable(table,0,static_cast<int> (temp)); //10% zmiana elementow posortowanej tablicyy
-		for (int i = 0; i < 6;i ++)
-			cout << table[i] << " ";
 		bubbleSort(); //sortowanie tablicy czesciowo posortowanej
 		ntable = "tablica czesciowo posortowana";
 		showOrSave(name, ntable);
