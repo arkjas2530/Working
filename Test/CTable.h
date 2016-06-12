@@ -1,6 +1,8 @@
 #include "library.h"
 #include <fstream>
-#include<string>
+#include <string>
+#include <cstdio>
+#include <ctime>
 
 class CTable
 {
@@ -30,11 +32,13 @@ protected:
 	
 	// Przechowuja dane zwiazane z zadaniem!
 	// Liczba porownan
-	int comparision;	
+	unsigned long long comparision;
 
 	// Liczba przestawien
-	int inversion;		
+	unsigned long long inversion;
 	
+	// Czas wykonywania algorytmu
+	clock_t czas; 
 	///////////////////////////////////////////////////
 	// METODY
 	///////////////////////////////////////////////////

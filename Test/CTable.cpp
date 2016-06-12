@@ -30,6 +30,7 @@ void CTable::swap_elem(int &a, int &b)
 
 CTable::CTable()
 {
+	czas = 0;
 	comparision = 0;
 	inversion = 0;
 	heapSize = sizeTable;
@@ -48,7 +49,7 @@ size_t CTable::size()
 
 void CTable::bubbleSort()
 {
-	
+	clock_t start = clock();
 	inversion = 0;
 	comparision = 0;
 
@@ -93,11 +94,13 @@ void CTable::bubbleSort()
 
 	
 	
-
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 
 }
 void CTable::selectionSort()
 {
+	clock_t start = clock();
 	//zmienna wskazujaca na element do zmiany(najmniejszy lub największy znaleziony)
 	int element_to_swap;
 	comparision = 0;	inversion = 0;
@@ -143,10 +146,14 @@ void CTable::selectionSort()
 			}
 		}
 	}
+
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 	 
 }
 void CTable::quickSortH(int first,int last)
 {
+	clock_t start = clock();
 	if (first < last)
 	{
 		// Ustawiamy os podzialu na ostatni  element
@@ -156,9 +163,13 @@ void CTable::quickSortH(int first,int last)
 		quickSortH(first, pivot-1);
 		quickSortH(pivot + 1, last);
 	}
+
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 }
 void CTable::shakerSort()
 {
+	clock_t start = clock();
 	int sum = 0;
 	comparision = 0; inversion = 0;
 	for (int i = 0; i < sizeTable-1;i++)
@@ -222,9 +233,13 @@ void CTable::shakerSort()
 		if (sum == 0)	break;
 		sum = 0;
 	}
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
+
 }
 void CTable::insertSort()
 {
+	clock_t start = clock();
 	int temp;
 	int j = 0;
 	int sum;
@@ -275,6 +290,8 @@ void CTable::insertSort()
 
 
 	}
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 
 }
 void CTable::build_heap()
@@ -287,7 +304,7 @@ void CTable::build_heap()
 	for (int i = sizeTable / 2;i >= 0;i--)
 	{
 		restore_heap(i);
-	}
+	}\
 }
 void CTable::restore_heap(int i)
 {
@@ -342,6 +359,7 @@ void CTable::restore_heap(int i)
 }
 void CTable::heapSort()
 {
+	clock_t start = clock();
 	build_heap();
 	/*
 	Zamienia korzeń z najmłodszym lisciem, wyrzuca zamieniony element, poza
@@ -354,11 +372,15 @@ void CTable::heapSort()
 		heapSize--;
 		restore_heap(0);
 	}
+
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 }
 
 					
 void CTable::bubbleSortCOM()
 {
+	clock_t start = clock();
 	// Liczniki 
 	// @i - wskazuje do ktorego elementu tablica jest posortowana 
 	// @j - przechodzi przez elementy petli FOR od konca
@@ -374,9 +396,9 @@ void CTable::bubbleSortCOM()
 		// Przechodz i sprawdzaj tablice od konca
 		// Po przejsciu calej tablicy ZAWSZE pierwszy element znajduje na swoim miejscu, 
 		// dlatego nie sprawdzana cala tablica
-		for (j = sizeTable - 1, i++, comparision++; i < j; j--)
+		for (j = sizeTable - 1, i++; i < j; j--)
 		{
-
+			comparision++;
 			if (way)
 			{	// Sortuj rosnaco
 				if (table[j] < table[j - 1])
@@ -409,9 +431,13 @@ void CTable::bubbleSortCOM()
 
 		// Jesli nie nastapi przestawienie zakoncz petle
 	} while (isMonotonicity);
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
+
 }
 void CTable::bucketSort()
 {
+	clock_t start = clock();
     // Ustawienie poczatkowych wartosci dla max i min
     int min = table[0], max = table[0];
    
@@ -426,7 +452,8 @@ void CTable::bucketSort()
    
     // Tworzenie tablicy pomocniczej
     int *tableHelper = creatTable(sizeTableHelper);
-   
+	comparision = sizeTable; inversion = sizeTable - 1;
+
     // Zerowanie licznikow tablicy
     for(int i = 0; i < sizeTableHelper; i++)
         tableHelper[i] = 0;   
@@ -434,7 +461,6 @@ void CTable::bucketSort()
     // Zliczanie licznikow
     for(int i = 0; i < sizeTable; i++)
         tableHelper[table[i] - min]++;
- 
    
     // Wartosci niezerowych licznikow zapisz do table
     // tyle razy ile wystepuja w tabe
@@ -450,9 +476,13 @@ void CTable::bucketSort()
 			while (tableHelper[i]--)
 				table[j++] = i + min;
 	}
+
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 }
 void CTable::quickSortL(int first, int last)
 {
+	clock_t start = clock();
 	if(first < last)
 	{
 		// Ustawiamy os podzialu na ostatni  element
@@ -462,6 +492,9 @@ void CTable::quickSortL(int first, int last)
 		quickSortL(first, pivot - 1);
 		quickSortL(pivot + 1, last);
 	}
+
+	clock_t stop = clock();
+	czas = (stop - start) / CLOCKS_PER_SEC;
 }
 
 int CTable::partitionLomut(int first, int last)

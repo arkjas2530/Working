@@ -423,13 +423,14 @@ void CSortTable::showTable(std::string name, std::string ntable)
 	cout << "----------------------------" << endl;
 	cout << "Metoda : " << name << endl;
 	cout << "Jaka tablica zostala poddana sortowaniu : " << ntable << endl;
+	cout << "Czas wyknywania programu: " << czas << endl;
 	cout << "Dane w tablicy:  " << endl;
 
 
-	int *wsk = table;
-	for (int i = 0; i < sizeTable; i++)
+	/*int *wsk = table;
+	/*for (int i = 0; i < sizeTable; i++)
 		cout << *wsk++ << ", ";
-	cout << endl;
+	cout << endl;*/
 	if (simple_method == true)
 	{
 		cout << "* Ilosc porownan: " << comparision << endl;

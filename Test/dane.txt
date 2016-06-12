@@ -1,0 +1,32 @@
+----------------------------
+Metoda : Sortowanie babelkowe(kontrola monotonicznosci): 
+Jaka tablica zostala poddana sortowaniu : tablica z wartosciami losowymi
+Dane w tablicy:  
+0, 2, 3, 4, 6, 6, 6, 6, 7, 10, 
+* Ilosc porownan: 9
+* Ilosc przestawien: 20
+
+----------------------------
+Metoda : Sortowanie babelkowe(kontrola monotonicznosci): 
+Jaka tablica zostala poddana sortowaniu : tablica posortowana rosnaco 
+Dane w tablicy:  
+0, 2, 3, 4, 6, 6, 6, 6, 7, 10, 
+* Ilosc porownan: 10
+* Ilosc przestawien: 20
+
+----------------------------
+Metoda : Sortowanie babelkowe(kontrola monotonicznosci): 
+Jaka tablica zostala poddana sortowaniu : tablica czesciowo posortowana
+Dane w tablicy:  
+0, 2, 3, 4, 6, 6, 6, 6, 7, 10, 
+* Ilosc porownan: 11
+* Ilosc przestawien: 20
+
+----------------------------
+Metoda : Sortowanie babelkowe(kontrola monotonicznosci): 
+Jaka tablica zostala poddana sortowaniu : tablica posortowana malejaco
+Dane w tablicy:  
+0, 2, 3, 4, 6, 6, 6, 6, 7, 10, 
+* Ilosc porownan: 21
+* Ilosc przestawien: 59
+
