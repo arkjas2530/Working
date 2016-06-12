@@ -384,7 +384,7 @@ void CTable::bubbleSortCOM()
 	// @i - wskazuje do ktorego elementu tablica jest posortowana 
 	// @j - przechodzi przez elementy petli FOR od konca
 	int i = -1, j;
-
+	comparision = 0; inversion = 0;
 	// Flaga sterujaca petla WHILE
 	bool isMonotonicity;
 	do

@@ -403,6 +403,7 @@ void CSortTable::menuMethodChoice()
 
 	default:
 		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
+		menuMethodChoice();
 
 	}
 }
