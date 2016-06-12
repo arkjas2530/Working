@@ -55,15 +55,13 @@ void CTable::bubbleSort()
 
 	if (way)
 	{
-		for (int i = 0; i < sizeTable - 1; i++)
+		for (int i = 0; i < sizeTable - 1; i++)//porownanie jednego elementu z reszta tablicy
 		{
-
-
-			for (int j = 0; j < sizeTable - 1 - i; j++)
+			for (int j = 0; j < sizeTable - 2 ; j++)
 			{
 				if (table[j] > table[j + 1])
 				{
-					swap_elem(table[j], table[j + 1]);
+					swap_elem(table[j], table[j + 1]); 
 					inversion++;
 
 				}
@@ -245,6 +243,7 @@ void CTable::insertSort()
 	int sum;
 	comparision = 0;
 	inversion = 0;
+	
 	if (way)
 	{
 		for (int i = 0; i < sizeTable - 1; i++)
@@ -254,7 +253,7 @@ void CTable::insertSort()
 			sum = 0;
 
 
-			while (j >= 0 && table[j] > temp)
+			while (j >= 0 && table[j] > temp) //zamiana dopoki liczba po prawej bedzie wieksza od wszystkich po lewej
 			{
 				table[j + 1] = table[j];
 				table[j] = temp;
