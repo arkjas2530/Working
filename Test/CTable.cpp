@@ -55,7 +55,7 @@ void CTable::bubbleSort()
 
 	if (way)
 	{
-		for (int i = 0; i < sizeTable - 1; i++)//porownanie jednego elementu z reszta tablicy
+		for (int i = 0; i < sizeTable - 1; i++)
 		{
 			for (int j = 0; j < sizeTable - 2 ; j++)
 			{
@@ -154,10 +154,9 @@ void CTable::quickSortH(int first,int last)
 	clock_t start = clock();
 	if (first < last)
 	{
-		// Ustawiamy os podzialu na ostatni  element
-		int pivot = partitionHoare(first, last);
+		//os podzialu element poczatkowy tablicy
+		int pivot = partitionHoare(first, last); 
 
-		// Wywolanie rekurencyjne funkcji 
 		quickSortH(first, pivot-1);
 		quickSortH(pivot + 1, last);
 	}
@@ -246,9 +245,10 @@ void CTable::insertSort()
 	
 	if (way)
 	{
+		//petla polegajaca na dobieraniu nowego elementu i porownywaniu go z powszednimi
 		for (int i = 0; i < sizeTable - 1; i++)
 		{
-			temp = table[i + 1];//zmienna porownywana z posortowana tab
+			temp = table[i + 1];//zmienna porownywana z aktualnie posortowanymi do tej pory elementami
 			j = i;
 			sum = 0;
 
@@ -269,11 +269,11 @@ void CTable::insertSort()
 
 		}
 	}
-	else
+	else //sortowanie malejace
 	{
 		for (int i = 0; i < sizeTable - 1; i++)
 		{
-			temp = table[i + 1];//zmienna porownywana z posortowana tab
+			temp = table[i + 1];
 			j = i;
 			sum = 0;
 
