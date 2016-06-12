@@ -191,7 +191,7 @@ void CSortTable::menuMethodChoice()
 		bubbleSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
-
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'2':
@@ -216,6 +216,7 @@ void CSortTable::menuMethodChoice()
 		bubbleSortCOM();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'3':
@@ -239,7 +240,7 @@ void CSortTable::menuMethodChoice()
 		shakerSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
-
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 	case'4':
 		name = "Sortowanie kubelkowe : ";
@@ -263,6 +264,7 @@ void CSortTable::menuMethodChoice()
 		bucketSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'5':
@@ -286,6 +288,7 @@ void CSortTable::menuMethodChoice()
 		selectionSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'6':
@@ -310,6 +313,7 @@ void CSortTable::menuMethodChoice()
 		insertSort();//sortowanie tablicy posortowanej niemalejaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'7':
@@ -330,11 +334,13 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 
 		way = false;
-		quickSortH(0, sizeTable - 1); //sortowanie tablicy posortowanej malejaco
+		quickSortH(0, sizeTable-1); //sortowanie tablicy posortowanej malejaco
+
 		way = true;
-		quickSortH(0, sizeTable - 1); //sortowanie tablicy posortowanej niemalejaco 
+		quickSortH(0, sizeTable-1); //sortowanie tablicy posortowanej rosnaco 
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'8':
@@ -360,7 +366,7 @@ void CSortTable::menuMethodChoice()
 		quickSortL(0, sizeTable - 1);
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
-
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case'9':
@@ -387,7 +393,7 @@ void CSortTable::menuMethodChoice()
 		heapSort();
 		ntable = "tablica posortowana malejaco";
 		showOrSave(name, ntable);
-
+		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
 	case '0':
@@ -412,7 +418,7 @@ void CSortTable::printTable()
 
 	cin >> flag;
 
-	if (flag != '1'&&flag != '2'&&flag != '3') // ??? Dziwne zmien to
+	if (flag != '1' && flag != '2' && flag != '3') // ??? Dziwne zmien to
 		cout << "Cos poszlo nie tak!" << endl;
 
 
@@ -423,14 +429,14 @@ void CSortTable::showTable(std::string name, std::string ntable)
 	cout << "----------------------------" << endl;
 	cout << "Metoda : " << name << endl;
 	cout << "Jaka tablica zostala poddana sortowaniu : " << ntable << endl;
-	cout << "Czas wyknywania programu: " << czas << endl;
 	cout << "Dane w tablicy:  " << endl;
 
 
-	/*int *wsk = table;
-	/*for (int i = 0; i < sizeTable; i++)
-		cout << *wsk++ << ", ";
-	cout << endl;*/
+	int *wsk = table;
+	for (int i = 0; i < sizeTable; i++)
+	cout << *wsk++ << ", ";
+	cout << endl;
+	
 	if (simple_method == true)
 	{
 		cout << "* Ilosc porownan: " << comparision << endl;
@@ -453,6 +459,7 @@ void CSortTable::showOrSave(std::string name, std::string ntable)
 	case '3':
 		showTable(name, ntable);
 		saveFile(name, ntable);
+		break;
 	}
 
 }
