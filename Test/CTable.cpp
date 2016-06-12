@@ -13,9 +13,9 @@ void CTable::openToSave()
 	size_t pos = nameFile.rfind(".txt");
 
 	if (pos == std::string::npos)//nie znaleziono na zadnej pozycji txt
-		file.open(nameFile + ".txt", std::ofstream::out | std::ofstream::app);
+		file.open(nameFile + ".txt", std::ios_base::out | std::ios_base::app);
 	else
-		file.open(nameFile, std::ofstream::out | std::ofstream::app);
+		file.open(nameFile, std::ios_base::out | std::ios_base::app);
 
 
 }
