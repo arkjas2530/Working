@@ -12,7 +12,7 @@ CSortTable::CSortTable()
 		show_menu();
 		menuMethodChoice();
 
-		cout << "Nacisnij Enter aby kontynuowac..." << endl;
+		//cout << "Nacisnij Enter aby kontynuowac..." << endl;
 		system("pause");
 		system("cls");
 	}
@@ -78,7 +78,7 @@ void CSortTable::show_menu()
 		exit(0);
 
 	default:
-		cout << "Brak wyboru w menu.Sprobuj ponownie " << endl;
+		cout << "Brak wyboru w menu. Sprobuj ponownie " << endl;
 		show_menu();
 	}
 	cout << endl;
@@ -120,7 +120,13 @@ void CSortTable::menuUserChoice(int _n)
 	for (int i = 0; i < _n; i++)
 	{
 		cout << "Podaj " << i + 1 << " element tablicy : ";
-		cin >> table[i];
+		while (!(cin >> table[i]))
+		{
+			cout << "Podaj " << i + 1 << " element tablicy : ";
+			cin.clear();
+			cin.sync();
+			cin.ignore();
+		}
 	}
 }
 
@@ -154,8 +160,19 @@ void CSortTable::menuMethodChoice()
 	cout << "0. Powrot do mentu glownego" << endl;
 
 	cout << " * Opcja : ";
-	char choice;
-	cin >> choice;
+	int choice;
+	
+
+	while (!(cin >> choice))
+	{
+		cin.clear();
+		cin.sync();
+		cin.ignore();
+		menuMethodChoice();
+	}
+
+
+
 	cout << endl;
 	/*
 	Decyduje czy metoda należy do tych od 0 - 7
@@ -169,7 +186,7 @@ void CSortTable::menuMethodChoice()
 	
 	switch (choice)
 	{
-	case'1':
+	case 1:
 		name = "Sortowanie babelkowe(kontrola monotonicznosci): ";
 		bubbleSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -194,7 +211,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'2':
+	case 2 :
 		name = "Sortowanie babelkowe(kontrola monotonicznosci): ";
 		bubbleSortCOM(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -219,7 +236,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'3':
+	case 3 :
 		name = "Sortowanie babelkowe z wariantem wahadlowym : ";
 		shakerSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -242,7 +259,7 @@ void CSortTable::menuMethodChoice()
 		showOrSave(name, ntable);
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
-	case'4':
+	case 4 :
 		name = "Sortowanie kubelkowe : ";
 		bucketSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -267,7 +284,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'5':
+	case 5 :
 		selectionSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
 		showOrSave(name, ntable);
@@ -291,7 +308,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'6':
+	case 6 :
 		name = "Sortowanie przez wstawianie ";
 		insertSort(); //sortowanie tablicy losowej
 		ntable = "tablica z wartosciami losowymi";
@@ -316,7 +333,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'7':
+	case 7 :
 		name = " Sortowanie szybkie Hoarne";
 
 		quickSortH(0, sizeTable - 1); //sortowanie tablicy losowej
@@ -343,7 +360,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'8':
+	case 8 :
 		name = "Sortowanie szybkie Lomuta";
 
 		quickSortL(0, sizeTable - 1); //sortowanie tablicy losowej
@@ -369,7 +386,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case'9':
+	case 9 :
 
 		name = "Sortowanie (kopcowanie)";
 
@@ -396,7 +413,7 @@ void CSortTable::menuMethodChoice()
 		file << "/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*/*" << endl;
 		break;
 
-	case '0':
+	case 0:
 		system("cls");
 		CSortTable();
 		break;
@@ -417,10 +434,13 @@ void CSortTable::printTable()
 	cout << "3. Wyswietlic i zapisac sortowane dane do pliku" << endl;
 	//zmienna okreslajaca pozniejsze wyswietlanie
 
-	cin >> flag;
+	cout << " * Opcja: ";  cin >> flag;
 
 	if (flag != '1' && flag != '2' && flag != '3') // ??? Dziwne zmien to
+	{
 		cout << "Cos poszlo nie tak!" << endl;
+		printTable();
+	}
 
 
 }
